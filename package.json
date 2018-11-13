@@ -28,7 +28,7 @@
     "test": "jest",
     "eject": "react-scripts eject",
     "import-data": "node ./node_modules/babel-cli/bin/babel-node.js commands/importData.js",
-    "heroku-postbuild": "npm run-script build-js"
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@babel/core": "^7.1.2",
