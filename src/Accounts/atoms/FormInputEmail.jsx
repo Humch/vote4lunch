@@ -4,25 +4,28 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-import { FormGroup, Label, Input } from 'reactstrap';
+import { Label } from 'reactstrap';
 
 import { formInputEmail } from '../actions';
 
-const Email = ({ email, formInputEmail: formInputEmailAction }) => (
-  <FormGroup>
-    <Label className="text-white" for="email">Indique ton email</Label>
-    <Input
+const FormInputEmail = ({ email, formInputEmail: formInputEmailAction }) => (
+  <div className="form-group">
+    <Label className="text-white" for="email">
+      {'Indique ton email'}
+    </Label>
+    <input
       type="email"
       name="email"
       id="email"
       value={email}
       onChange={e => formInputEmailAction(e.target.value)}
       required
+      className="form-control"
     />
-  </FormGroup>
+  </div>
 );
 
-Email.propTypes = {
+FormInputEmail.propTypes = {
   email: PropTypes.string.isRequired,
   formInputEmail: PropTypes.func.isRequired,
 };
@@ -33,4 +36,4 @@ const mstp = ({ voteDataForm }) => ({
 
 const mdtp = dispatch => bindActionCreators({ formInputEmail }, dispatch);
 
-export default connect(mstp, mdtp)(Email);
+export default connect(mstp, mdtp)(FormInputEmail);

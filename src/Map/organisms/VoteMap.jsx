@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -7,14 +9,11 @@ import MaterialIcon from 'material-icons-react';
 
 import 'leaflet/dist/leaflet.css';
 
+import { updateMapCoordinates } from '../actions';
+
 class VoteMap extends Component {
   constructor() {
     super();
-    this.state = {
-      position_latitude: 44.833,
-      position_longitude: -0.59,
-      zoomLevel: 12,
-    };
     this.leafletMap = React.createRef();
     this.getLocation = this.getLocation.bind(this);
   }
@@ -24,33 +23,28 @@ class VoteMap extends Component {
   }
 
   getLocation() {
+    const { updateMapCoordinates: updateMC } = this.props;
+
     if (navigator.geolocation) {
       // L'API est disponible
       const success = (pos) => {
         const crd = pos.coords;
-
-        this.setState({
-          position_latitude: crd.latitude,
-          position_longitude: crd.longitude,
-          zoomLevel: 16,
-        });
+        updateMC(crd.latitude, crd.longitude, 16);
       };
       navigator.geolocation.getCurrentPosition(success);
     }
   }
 
-
   render() {
-    const mapCenter = [this.state.position_latitude, this.state.position_longitude];
+    const { restaurants, positionLatitude, positionLongitude, zoomLevel } = this.props;
+    const mapCenter = [positionLatitude, positionLongitude];
     const mapTiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    const { restaurants } = this.props;
 
     return (
       <div className="mt-3">
-
         <Map
           center={mapCenter}
-          zoom={this.state.zoomLevel}
+          zoom={zoomLevel}
           ref={this.leafletMap}
           className="VoteMap"
         >
@@ -81,11 +75,21 @@ class VoteMap extends Component {
 }
 
 VoteMap.propTypes = {
-  restaurants: PropTypes.objectOf(
-    PropTypes.arrayOf(
-      PropTypes.object
-    )
+  updateMapCoordinates: PropTypes.func.isRequired,
+  restaurants: PropTypes.arrayOf(
+    PropTypes.object
   ).isRequired,
+  positionLatitude: PropTypes.number.isRequired,
+  positionLongitude: PropTypes.number.isRequired,
+  zoomLevel: PropTypes.number.isRequired,
 };
 
-export default VoteMap;
+const mstp = ({ mapCoordinates }) => ({
+  positionLatitude: mapCoordinates.positionLatitude,
+  positionLongitude: mapCoordinates.positionLongitude,
+  zoomLevel: mapCoordinates.zoomLevel,
+});
+
+const mdtp = dispatch => bindActionCreators({ updateMapCoordinates }, dispatch);
+
+export default connect(mstp, mdtp)(VoteMap);

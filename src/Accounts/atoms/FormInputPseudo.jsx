@@ -4,22 +4,25 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-import { FormGroup, Label, Input } from 'reactstrap';
+import { Label } from 'reactstrap';
 
 import { formInputPseudo } from '../actions';
 
 const Pseudo = ({ pseudo, formInputPseudo: formInputPseudoAction }) => (
-  <FormGroup>
-    <Label className="text-white" for="pseudo">Indique ton pseudo</Label>
-    <Input
+  <div className="form-group">
+    <Label className="text-white" for="pseudo">
+      {'Indique ton pseudo'}
+    </Label>
+    <input
       type="text"
       name="pseudo"
       id="pseudo"
       value={pseudo}
       onChange={e => formInputPseudoAction(e.target.value)}
       required
+      className="form-control"
     />
-  </FormGroup>
+  </div>
 );
 
 Pseudo.propTypes = {

@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title5 Snapshot capturing Snapshot of Title5 with content and alignment 1`] = `
+<h5
+  className=" text-center"
+>
+  Le superbe titre
+</h5>
+`;
+
+exports[`Title5 Snapshot capturing Snapshot of Title5 with content and color 1`] = `
+<h5
+  className=" text-white"
+>
+  Le superbe titre
+</h5>
+`;
+
+exports[`Title5 Snapshot capturing Snapshot of Title5 with content only 1`] = `
+<h5
+  className=""
+>
+  Le superbe titre
+</h5>
+`;

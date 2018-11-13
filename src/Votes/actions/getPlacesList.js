@@ -27,8 +27,7 @@ export function getPlacesList(voteUrl) {
       })
         .then((result) => {
           dispatch(getPlacesListSuccess({ [voteUrl]: result.data }));
-        }
-        )
+        })
         .catch(error => dispatch(getPlacesListFailure(error)))
     );
   };

@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About Snapshot capturing Snapshot of About 1`] = `
+<div
+  className="APropos container-fluid"
+>
+  <div
+    className="justify-content-center align-items-center w-100 pt-5 no-gutters row"
+  >
+    <div
+      className="bg-lighter round-corners px-3 col-12 col-lg-6"
+    >
+      <div
+        className="justify-content-center align-items-center h-100 pt-5 no-gutters row"
+      >
+        <div
+          className="col"
+        >
+          <h1
+            className="text-center"
+          >
+            A propos...
+          </h1>
+        </div>
+      </div>
+      <div
+        className="justify-content-center align-items-center h-100 py-5 no-gutters row"
+      >
+        <div
+          className="col"
+        >
+          <p
+            className="text-center"
+          >
+            Ce site est réalisé avec React Redux, servi par NodeJS avec une base de données Postgresql.
+            <br />
+            Il est hébergé grâce à Heroku.
+          </p>
+          <p
+            className="text-center"
+          >
+            Le code est hébergé sur Github, il est visible 
+            <a
+              className="text-white"
+              href="https://github.com/Humch/vote4lunch"
+            >
+              ici
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

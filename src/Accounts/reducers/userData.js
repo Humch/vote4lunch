@@ -14,6 +14,22 @@ export default (state = initialState, action) => {
         pseudo: action.pseudo,
         email: action.email,
       };
+    case 'FORM_INPUT_PSEUDO':
+      return {
+        ...state,
+        pseudo: action.pseudo,
+      };
+    case 'FORM_INPUT_EMAIL':
+      return {
+        ...state,
+        email: action.email,
+      };
+    case 'RESET_VOTE_DATA':
+      return {
+        ...state,
+        pseudo: '',
+        email: '',
+      };
     default:
       return state;
   }

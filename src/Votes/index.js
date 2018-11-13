@@ -1,6 +1,12 @@
 import { ButtonEndDate, DisplayWinnerTrophy, MailToButton } from './atoms';
 import { DisplayWinner, UsersVoicesTable } from './molecules';
-import { AddAVoice, GetUsersVotes, PlaceCard, UsersVoices, VoteCollapser } from './organisms';
+import {
+  AddAVoice,
+  GetUsersVotes,
+  PlaceCard,
+  UsersVoices,
+  VoteCollapser
+} from './organisms';
 
 export {
   ButtonEndDate,

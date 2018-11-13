@@ -10,11 +10,13 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 const TopAlert = ({ messageType, status, message }) => {
   let picto = '';
   if (messageType === 'danger') {
-    picto = <FontAwesomeIcon icon={faExclamationTriangle} />;
+    picto = <FontAwesomeIcon className="mx-2" icon={faExclamationTriangle} />;
   }
   return (
     <Alert color={messageType} isOpen={status} className="AlertBox">
-      {picto} {message} {picto}
+      {picto}
+      {message}
+      {picto}
     </Alert>
   );
 };

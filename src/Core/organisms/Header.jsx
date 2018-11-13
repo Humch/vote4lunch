@@ -24,7 +24,7 @@ import Link from 'react-router-dom/Link';
 
 import { LoginModal } from '../../Accounts';
 
-import { TopAlert } from '../';
+import { TopAlert } from '..';
 import { updateUserData } from '../../Accounts/actions';
 
 class Header extends Component {
@@ -52,14 +52,16 @@ class Header extends Component {
   }
 
   toggleHamburger() {
+    const { isOpen } = this.state;
     this.setState({
-      isOpen: !this.state.isOpen
+      isOpen: !isOpen
     });
   }
 
   toggleTooltip() {
+    const { tooltipOpen } = this.state;
     this.setState({
-      tooltipOpen: !this.state.tooltipOpen
+      tooltipOpen: !tooltipOpen
     });
   }
 
@@ -76,6 +78,7 @@ class Header extends Component {
   }
 
   render() {
+    const { isOpen, tooltipOpen, openLoginModal } = this.state;
     const { voteData } = this.props;
     const votePseudo = voteData.pseudo;
 
@@ -92,30 +95,36 @@ class Header extends Component {
 
     let renderBonjour;
     if (pseudo) {
-      renderBonjour = (<NavItem className="mr-3 pt-1">
-        <NavLink>
-          Bonjour, {pseudo}
-        </NavLink>
-      </NavItem>);
+      renderBonjour = (
+        <NavItem className="mr-3 pt-1">
+          <NavLink>
+
+            {'Bonjour, '}
+            {pseudo}
+          </NavLink>
+        </NavItem>
+      );
     } else {
-      renderBonjour =
-        (<NavItem className="mr-3">
+      renderBonjour = (
+        <NavItem className="mr-3">
           <Button
+            id="loginButton"
             color="success"
             outline
             onClick={() => this.openLoginModal()}
           >
             {"S'identifier"}
           </Button>
-        </NavItem>);
+        </NavItem>
+      );
     }
 
     let renderButtonVote;
     let renderButtonLogout;
     if (pseudo) {
       if (window.innerWidth <= 768) {
-        renderButtonVote =
-          (<NavItem className="mr-3">
+        renderButtonVote = (
+          <NavItem className="mr-3">
             <ButtonGroup>
               <Button
                 tag={Link}
@@ -131,6 +140,7 @@ class Header extends Component {
                 />
               </Button>
               <Button
+                id="logoutButton"
                 tag={Link}
                 color="danger"
                 to="/logout"
@@ -139,11 +149,12 @@ class Header extends Component {
                 <FontAwesomeIcon icon={faPowerOff} />
               </Button>
             </ButtonGroup>
-          </NavItem>);
+          </NavItem>
+        );
         renderButtonLogout = '';
       } else {
-        renderButtonVote =
-          (<NavItem className="mr-3">
+        renderButtonVote = (
+          <NavItem className="mr-3">
             <Button
               tag={Link}
               color="info"
@@ -157,10 +168,12 @@ class Header extends Component {
                 size="tiny"
               />
             </Button>
-          </NavItem>);
-        renderButtonLogout =
-          (<NavItem className="mr-3">
+          </NavItem>
+        );
+        renderButtonLogout = (
+          <NavItem className="mr-3">
             <Button
+              id="logoutButton"
               tag={Link}
               color="danger"
               to="/logout"
@@ -168,7 +181,8 @@ class Header extends Component {
             >
               <FontAwesomeIcon icon={faPowerOff} />
             </Button>
-          </NavItem>);
+          </NavItem>
+        );
       }
     } else {
       renderButtonVote = '';
@@ -181,7 +195,7 @@ class Header extends Component {
         <Navbar dark expand="md" className="bg-blue">
           <NavbarBrand href="/">Vote 4 Lunch</NavbarBrand>
           <NavbarToggler onClick={this.toggleHamburger} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+          <Collapse isOpen={isOpen} navbar>
             <Nav className="ml-auto" navbar>
               {renderBonjour}
               {renderButtonVote}
@@ -189,17 +203,19 @@ class Header extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-        {pseudo ?
-          <Tooltip
-            placement="bottom"
-            isOpen={this.state.tooltipOpen}
-            target="TooltipMyVotes"
-            toggle={this.toggleTooltip}
-          >
-            Accéder à mes votes
-          </Tooltip>
+        {pseudo
+          ? (
+            <Tooltip
+              placement="bottom"
+              isOpen={tooltipOpen}
+              target="TooltipMyVotes"
+              toggle={this.toggleTooltip}
+            >
+              {'Accéder à mes votes'}
+            </Tooltip>
+          )
           : ''}
-        {this.state.openLoginModal ? <LoginModal open /> : ''}
+        {openLoginModal ? <LoginModal open /> : ''}
       </div>
     );
   }

@@ -28,8 +28,7 @@ export function deleteAPlace(voteId, placeId) {
       })
         .then((result) => {
           dispatch(deleteAPlaceSuccess(result));
-        }
-        )
+        })
         .catch(error => dispatch(deleteAPlaceFailure(error)))
     );
   };

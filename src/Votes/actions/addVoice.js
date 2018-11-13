@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getVoiceCount, getUserVoices, getAllVoicesForAVote } from './';
+import { getVoiceCount, getUserVoices, getAllVoicesForAVote } from '.';
 
 export const addVoiceBegin = () => ({
   type: 'ADD_VOICE_BEGIN',

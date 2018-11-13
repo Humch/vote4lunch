@@ -22,8 +22,7 @@ export function getAllVoicesForAVote(voteUrl) {
         .get(`/api/voice/get/all/forvote?vote_url=${voteUrl}`)
         .then((result) => {
           dispatch(getAllVoicesForAVoteSuccess(result));
-        }
-        )
+        })
         .catch(error => dispatch(getAllVoicesForAVoteFailure(error)))
     );
   };

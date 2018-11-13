@@ -9,9 +9,10 @@ import { resetVoteData } from '../../VoteCreator/actions';
 
 class LogoutView extends Component {
   componentDidMount() {
+    const { resetVoteData: resetVD } = this.props;
     localStorage.removeItem('pseudo');
     localStorage.removeItem('email');
-    this.props.resetVoteData();
+    resetVD();
   }
 
   render() {

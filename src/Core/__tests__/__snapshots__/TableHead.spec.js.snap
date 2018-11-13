@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableHead Snapshot capturing Snapshot of TableHead 1`] = `
+<thead>
+  <tr>
+    <th />
+    <th
+      className="text-center"
+    >
+      Resto 1
+    </th>
+    <th
+      className="text-center"
+    >
+      Resto 2
+    </th>
+    <th
+      className="text-center"
+    >
+      Resto 3
+    </th>
+  </tr>
+</thead>
+`;

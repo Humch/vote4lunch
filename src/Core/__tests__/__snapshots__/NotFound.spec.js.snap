@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound Snapshot capturing Snapshot of NotFound 1`] = `
+<div
+  className="NotFound row"
+>
+  <div
+    className="col"
+  >
+    <h1
+      className="text-center text-white mt-5 display-1"
+    >
+      404
+    </h1>
+  </div>
+</div>
+`;

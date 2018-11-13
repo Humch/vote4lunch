@@ -3,6 +3,7 @@ import { faSmileBeam } from '@fortawesome/free-regular-svg-icons';
 import MaterialIcon from 'material-icons-react';
 
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -14,6 +15,7 @@ import { Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
 import axios from 'axios';
 
 import { addVoice, getVoiceCount } from '../actions';
+import { updateMapCoordinates } from '../../Map/actions';
 
 moment.locale('fr');
 
@@ -29,7 +31,9 @@ class PlaceCard extends Component {
   }
 
   async componentDidMount() {
-    await this.props.dispatch(getVoiceCount(this.props.voteUrl, this.props.restaurant.id));
+    const { getVoiceCount: getVC } = this.props;
+
+    await getVC(this.props.voteUrl, this.props.restaurant.id);
     await this.getVoteId();
   }
 
@@ -43,9 +47,16 @@ class PlaceCard extends Component {
   }
 
   render() {
-    const { restaurant, voiceCount, userData, userVoices, remainingTime } = this.props;
-
-
+    const {
+      restaurant,
+      voiceCount,
+      userData,
+      userVoices,
+      remainingTime,
+      voteUrl,
+      addVoice: addV,
+      updateMapCoordinates: updateMC,
+    } = this.props;
     // Control if the user has voted for the restaurant, if not, enable the button
     let disabledButton = false;
 
@@ -98,6 +109,7 @@ class PlaceCard extends Component {
             size="sm"
             className="float-right"
             color="info"
+            onClick={() => updateMC(restaurant.lat, restaurant.lng, 18)}
           >
             {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />}
           </Button>
@@ -108,10 +120,8 @@ class PlaceCard extends Component {
             <CardText>Votes : {filteredVoiceCountValue.count}</CardText>
             <Button
               onClick={
-                () => this.props.dispatch(
-                  addVoice(
-                    this.props.voteUrl, this.props.restaurant.id, userData.pseudo, userData.email
-                  )
+                () => addV(
+                  voteUrl, restaurant.id, userData.pseudo, userData.email
                 )
               }
               size="sm"
@@ -127,13 +137,23 @@ class PlaceCard extends Component {
 }
 
 PlaceCard.propTypes = {
-  dispatch: PropTypes.func,
-  restaurant: PropTypes.objectOf(PropTypes.object).isRequired,
+  restaurant: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    lat: PropTypes.number.isRequired,
+    lng: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+  }).isRequired,
   voteUrl: PropTypes.string,
   voiceCount: PropTypes.arrayOf(PropTypes.object),
   userData: PropTypes.objectOf(PropTypes.string).isRequired,
-  userVoices: PropTypes.objectOf().isRequired,
+  userVoices: PropTypes.shape({
+    result: PropTypes.array.isRequired,
+  }).isRequired,
   remainingTime: PropTypes.string.isRequired,
+  updateMapCoordinates: PropTypes.func.isRequired,
+  addVoice: PropTypes.func.isRequired,
+  getVoiceCount: PropTypes.func.isRequired,
 };
 
 const mstp = ({ getVoicesCount, userData, userVoices, getAVote }) => ({
@@ -143,4 +163,10 @@ const mstp = ({ getVoicesCount, userData, userVoices, getAVote }) => ({
   remainingTime: getAVote.end_date,
 });
 
-export default connect(mstp)(PlaceCard);
+const mdtp = dispatch => bindActionCreators({
+  updateMapCoordinates,
+  getVoiceCount,
+  addVoice,
+}, dispatch);
+
+export default connect(mstp, mdtp)(PlaceCard);

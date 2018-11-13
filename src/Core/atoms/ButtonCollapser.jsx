@@ -26,4 +26,3 @@ ButtonCollapser.propTypes = {
 };
 
 export default ButtonCollapser;
-

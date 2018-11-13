@@ -4,11 +4,16 @@ import PropTypes from 'prop-types';
 
 import { Row, Col } from 'reactstrap';
 
-import { DisplayWinnerTrophy } from '../';
+import { DisplayWinnerTrophy } from '..';
 
 import { Title5 } from '../../Core';
 
-const DisplayWinner = ({ getAVoteId, getAVoteUrl, getVoicesCount, restaurants }) => {
+const DisplayWinner = ({
+  getAVoteId,
+  getAVoteUrl,
+  getVoicesCount,
+  restaurants,
+}) => {
   const getThisVoteCount = getVoicesCount.filter(e => e.voteId === getAVoteId);
   const maxVoices = Math.max(...getVoicesCount.map(o => o.count));
   const winner = getThisVoteCount.filter(e => e.count === maxVoices);
@@ -44,7 +49,7 @@ const DisplayWinner = ({ getAVoteId, getAVoteUrl, getVoicesCount, restaurants })
           </Col>
           <Col xs="6">
             <Title5
-              content={displayWinner}
+              content={displayWinner || ''}
               color="white"
               alignment="center"
             />

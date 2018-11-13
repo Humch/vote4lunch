@@ -30,10 +30,8 @@ export function deleteAVote(voteUrl) {
           vote_url: voteUrl,
         }
       })
-        .then(result => dispatch(deleteAVoteSuccess(result.data))
-        )
-        .then(() => dispatch(deleteAVoteInit())
-        )
+        .then(result => dispatch(deleteAVoteSuccess(result.data)))
+        .then(() => dispatch(deleteAVoteInit()))
         .catch(error => dispatch(deleteAVoteFailure(error)))
     );
   };

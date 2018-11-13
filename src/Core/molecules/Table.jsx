@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Table as T } from 'reactstrap';
 
-import { TableBody, TableHead } from '../';
+import { TableBody, TableHead } from '..';
 
 const Table = ({ data, headList, dark }) => (
   <T
@@ -13,7 +13,6 @@ const Table = ({ data, headList, dark }) => (
       headList={headList}
     />
     <TableBody
-      headList={headList}
       data={data}
     />
   </T>

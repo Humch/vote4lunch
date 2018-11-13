@@ -11,7 +11,7 @@ import allReducers from './reducers';
 
 import App from './Core/organisms/App';
 
-import './Core/css/index.css';
+import './Core/css/index.scss';
 
 const store = createStore(allReducers, composeWithDevTools(
   applyMiddleware(reduxThunk)
@@ -28,5 +28,6 @@ ReactDOM.render(
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </Provider>
-  , document.getElementById('root'));
+  </Provider>,
+  document.getElementById('root')
+);

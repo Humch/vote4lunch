@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormInputDate Snapshot capturing Snapshot of FormInputDate 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    className="text-white"
+    htmlFor="date"
+  >
+    Choisis la date du repas
+  </label>
+  <input
+    className="form-control"
+    id="date"
+    name="date"
+    onChange={[Function]}
+    required={true}
+    type="date"
+    value="2018-10-01"
+  />
+</div>
+`;

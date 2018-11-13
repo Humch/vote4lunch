@@ -5,17 +5,16 @@ const TableHead = ({ headList }) => (
   <thead>
     <tr>
       <th />
-      {headList.map(e => <th key={e.id} className="text-center" >{e.name}</th>)}
+      {headList.map(e => <th key={e.id} className="text-center">{e.name}</th>)}
     </tr>
   </thead>
 );
 
-TableHead.defaultProps = {
-  headList: [],
-};
-
 TableHead.propTypes = {
-  headList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  headList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  })).isRequired,
 };
 
 export default TableHead;

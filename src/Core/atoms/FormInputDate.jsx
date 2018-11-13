@@ -4,22 +4,23 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-import { FormGroup, Label, Input } from 'reactstrap';
+import { Label } from 'reactstrap';
 
 import { formInputDate } from '../actions';
 
 const Date = ({ date, formInputDate: formInputDateFunc }) => (
-  <FormGroup>
+  <div className="form-group">
     <Label className="text-white" for="date">Choisis la date du repas</Label>
-    <Input
+    <input
       type="date"
       name="date"
       id="date"
       value={date}
       onChange={e => formInputDateFunc(e.target.value)}
       required
+      className="form-control"
     />
-  </FormGroup>
+  </div>
 );
 
 Date.propTypes = {

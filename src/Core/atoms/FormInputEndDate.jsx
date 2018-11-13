@@ -4,7 +4,13 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-import { FormGroup, Label, Input, InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import {
+  FormGroup,
+  Label,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+} from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faClock } from '@fortawesome/free-regular-svg-icons';
@@ -16,33 +22,37 @@ const EndDate = ({ endDate, endTime, formInputEndDate: formInputEndDateFunc }) =
     <Label className="text-white" for="datetime">Choisis la fin du vote</Label>
     <InputGroup>
       <InputGroup>
-        <Input
+        <input
           type="date"
           name="endDate"
           id="endDate"
           value={endDate}
           onChange={e => formInputEndDateFunc(e.target.value, endTime)}
           required
+          className="form-control"
         />
         <InputGroupAddon addonType="append">
           <InputGroupText>
             <FontAwesomeIcon icon={faCalendar} />
           </InputGroupText>
         </InputGroupAddon>
-        <Input
+        <input
           type="time"
           name="endTime"
           id="endTime"
           value={endTime}
           onChange={e => formInputEndDateFunc(endDate, e.target.value)}
           required
+          className="form-control"
         />
         <InputGroupAddon addonType="append">
           <InputGroupText>
             <FontAwesomeIcon icon={faClock} />
           </InputGroupText>
         </InputGroupAddon>
-      </InputGroup></InputGroup>
+      </InputGroup>
+
+    </InputGroup>
   </FormGroup>
 );
 

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import userDataReducer from './Accounts/reducers';
 import topAlertReducer from './Core/reducers';
-import { listOfRestaurantsReducer, onMapAlertReducer } from './Map/reducers';
+import { listOfRestaurantsReducer, mapCoordinatesReducer, onMapAlertReducer } from './Map/reducers';
 import { createAVoteReducer, voteDataFormReducer, voteDataReducer } from './VoteCreator/reducers';
 import {
   addVoiceReducer,
@@ -18,6 +18,7 @@ import {
 
 export default combineReducers({
   restaurants: listOfRestaurantsReducer,
+  mapCoordinates: mapCoordinatesReducer,
   vote: createAVoteReducer,
   delVote: deleteAVoteReducer,
   voteData: voteDataReducer,

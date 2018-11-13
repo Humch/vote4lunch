@@ -24,6 +24,8 @@ const restaurants = (state = initialState, action) => {
         loading: false,
         error: action.error,
       };
+    case 'RESET_LIST_OF_RESTAURANTS':
+      return { ...initialState };
     default:
       return state;
   }

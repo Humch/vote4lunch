@@ -18,7 +18,7 @@ import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 import L from 'leaflet';
 
-import { fetchRestaurants, offMapAlert, onMapAlert } from '../actions';
+import { fetchRestaurants, offMapAlert, onMapAlert, resetListOfRestaurants, updateMapCoordinates, updateZoomLevel } from '../actions';
 import { addAPlace } from '../../VoteCreator/actions/addAPlace';
 
 
@@ -37,11 +37,6 @@ L.Icon.Default.mergeOptions({
 class PlaceMap extends Component {
   constructor() {
     super();
-    this.state = {
-      position_latitude: 44.833,
-      position_longitude: -0.59,
-      zoomLevel: 12,
-    };
 
     this.leafletMap = React.createRef();
     this.getLocation = this.getLocation.bind(this);
@@ -53,33 +48,55 @@ class PlaceMap extends Component {
     this.getLocation();
   }
 
+  componentDidUpdate() {
+    const {
+      restaurants,
+      loadingRestaurants,
+      zoomLevel,
+      onMapAlert: onMA,
+      offMapAlert: offMA
+    } = this.props;
+
+    if (restaurants.length === 0 && zoomLevel > 15 && !loadingRestaurants) {
+      onMA('info', 'Pas de restaurant connu dans cette zone');
+    } else {
+      offMA();
+    }
+  }
+
   getLocation() {
+    const { updateMapCoordinates: updateMC } = this.props;
     if (navigator.geolocation) {
       // L'API est disponible
       const success = (pos) => {
         const crd = pos.coords;
-
-        this.setState({
-          position_latitude: crd.latitude,
-          position_longitude: crd.longitude,
-          zoomLevel: 16,
-        });
+        updateMC(crd.latitude, crd.longitude, 16);
       };
       navigator.geolocation.getCurrentPosition(success);
     }
   }
 
   getRestaurantsList() {
-    const { fetchRestaurants: fetchR } = this.props;
+    const {
+      fetchRestaurants: fetchR,
+      resetListOfRestaurants: resetLOR,
+      updateZoomLevel: updateZL
+    } = this.props;
 
-    if (this.leafletMap.current.leafletElement) {
-      const coordinates = this.leafletMap.current.leafletElement.getBounds();
+    const { leafletElement, viewport } = this.leafletMap.current;
+
+    updateZL(viewport.zoom);
+
+    if (leafletElement && viewport.zoom > 15) {
+      const coordinates = leafletElement.getBounds();
       fetchR(
         coordinates._northEast.lat,
         coordinates._northEast.lng,
         coordinates._southWest.lat,
         coordinates._southWest.lng
       );
+    } else {
+      resetLOR();
     }
   }
 
@@ -97,38 +114,41 @@ class PlaceMap extends Component {
   }
 
   render() {
-    const { error, restaurants, voteData, onMapAlert: onMA, offMapAlert: offMA } = this.props;
-    const mapCenter = [this.state.position_latitude, this.state.position_longitude];
+    const {
+      error,
+      restaurants,
+      voteData,
+      positionLatitude,
+      positionLongitude,
+      zoomLevel,
+      onMapAlert: onMA,
+      offMapAlert: offMA
+    } = this.props;
+
+    const mapCenter = [positionLatitude, positionLongitude];
     const mapTiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
-    let render;
-
-    if (restaurants.length === 0) {
-      onMA('info', 'Pas de restaurant connu dans cette zone');
-      setTimeout(() => { offMA(); }, 3000);
-    } else {
-      render = restaurants.map(restaurant => (
-        <Marker
-          key={restaurant.id}
-          position={[restaurant.lat, restaurant.lng]}
-        >
-          <Popup>
-            <p className="text-center mb-1">
-              {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />}
-            </p>
-            <p className="text-center my-1">
-              {restaurant.name}
-            </p>
-            <p className="text-center mt-1">
-              <Button
-                color="success"
-                onClick={() => this.addAPlaceToVote(voteData, restaurant.id)}
-              ><FontAwesomeIcon icon={faPlus} /></Button>
-            </p>
-          </Popup>
-        </Marker>
-      ));
-    }
+    const render = restaurants.map(restaurant => (
+      <Marker
+        key={restaurant.id}
+        position={[restaurant.lat, restaurant.lng]}
+      >
+        <Popup>
+          <p className="text-center mb-1">
+            {restaurant.type === 'restaurant' ? <MaterialIcon icon="restaurant" /> : <MaterialIcon icon="fastfood" />}
+          </p>
+          <p className="text-center my-1">
+            {restaurant.name}
+          </p>
+          <p className="text-center mt-1">
+            <Button
+              color="success"
+              onClick={() => this.addAPlaceToVote(voteData, restaurant.id)}
+            ><FontAwesomeIcon icon={faPlus} /></Button>
+          </p>
+        </Popup>
+      </Marker>
+    ));
 
     if (error) {
       onMA('danger', 'Aie, il y a un problème avec la carte');
@@ -137,10 +157,9 @@ class PlaceMap extends Component {
 
     return (
       <div>
-
         <Map
           center={mapCenter}
-          zoom={this.state.zoomLevel}
+          zoom={zoomLevel}
           ref={this.leafletMap}
           onmoveend={() => this.getRestaurantsList()}
           onzoomend={() => this.getRestaurantsList()}
@@ -149,7 +168,6 @@ class PlaceMap extends Component {
           <TileLayer
             url={mapTiles}
           />
-
           <Controls />
           {render}
         </Map>
@@ -163,6 +181,9 @@ PlaceMap.propTypes = {
   fetchRestaurants: PropTypes.func.isRequired,
   onMapAlert: PropTypes.func.isRequired,
   offMapAlert: PropTypes.func.isRequired,
+  updateMapCoordinates: PropTypes.func.isRequired,
+  updateZoomLevel: PropTypes.func.isRequired,
+  resetListOfRestaurants: PropTypes.func.isRequired,
   restaurants: PropTypes.objectOf(
     PropTypes.arrayOf(
       PropTypes.object
@@ -170,18 +191,30 @@ PlaceMap.propTypes = {
   ).isRequired,
   voteData: PropTypes.objectOf(PropTypes.object).isRequired,
   error: PropTypes.objectOf().isRequired,
+  loadingRestaurants: PropTypes.bool.isRequired,
+  positionLatitude: PropTypes.number.isRequired,
+  positionLongitude: PropTypes.number.isRequired,
+  zoomLevel: PropTypes.number.isRequired,
 };
 
-const mstp = ({ restaurants, voteData }) => ({
+const mstp = ({ restaurants, voteData, mapCoordinates }) => ({
   restaurants: restaurants.list,
   error: restaurants.error,
+  loadingRestaurants: restaurants.loading,
   voteData,
+  positionLatitude: mapCoordinates.positionLatitude,
+  positionLongitude: mapCoordinates.positionLongitude,
+  zoomLevel: mapCoordinates.zoomLevel,
 });
 
 const mdtp = dispatch => bindActionCreators({
   addAPlace,
   fetchRestaurants,
   onMapAlert,
-  offMapAlert }, dispatch);
+  offMapAlert,
+  resetListOfRestaurants,
+  updateMapCoordinates,
+  updateZoomLevel,
+}, dispatch);
 
 export default connect(mstp, mdtp)(PlaceMap);

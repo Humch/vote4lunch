@@ -1,4 +1,4 @@
-import Place  from './molecules';
+import Place from './molecules';
 import {
   CreateAVote,
   BeginVote,

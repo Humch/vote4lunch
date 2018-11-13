@@ -1,0 +1,87 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableBody Snapshot capturing Snapshot of TableBody 1`] = `
+<tbody>
+  <tr>
+    <th
+      scope="row"
+    >
+      bob
+    </th>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+    <td
+      className="text-center"
+    >
+      
+    </td>
+    <td
+      className="text-center"
+    >
+      
+    </td>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+  </tr>
+  <tr>
+    <th
+      scope="row"
+    >
+      roger
+    </th>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+    <td
+      className="text-center"
+    >
+      
+    </td>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+  </tr>
+  <tr>
+    <th
+      scope="row"
+    >
+      mickey
+    </th>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+    <td
+      className="text-center"
+    >
+      
+    </td>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+  </tr>
+</tbody>
+`;

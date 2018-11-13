@@ -1,0 +1,330 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Table Snapshot capturing Snapshot of Table with dark props 1`] = `
+<table
+  className="table table-dark"
+>
+  <thead>
+    <tr>
+      <th />
+      <th
+        className="text-center"
+      >
+        Resto 1
+      </th>
+      <th
+        className="text-center"
+      >
+        Resto 2
+      </th>
+      <th
+        className="text-center"
+      >
+        Resto 3
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th
+        scope="row"
+      >
+        bob
+      </th>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+      <td
+        className="text-center"
+      >
+        
+      </td>
+      <td
+        className="text-center"
+      >
+        
+      </td>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+    </tr>
+    <tr>
+      <th
+        scope="row"
+      >
+        roger
+      </th>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+      <td
+        className="text-center"
+      >
+        
+      </td>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+    </tr>
+    <tr>
+      <th
+        scope="row"
+      >
+        mickey
+      </th>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+      <td
+        className="text-center"
+      >
+        
+      </td>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`Table Snapshot capturing Snapshot of Table with data and headList only 1`] = `
+<table
+  className="table"
+>
+  <thead>
+    <tr>
+      <th />
+      <th
+        className="text-center"
+      >
+        Resto 1
+      </th>
+      <th
+        className="text-center"
+      >
+        Resto 2
+      </th>
+      <th
+        className="text-center"
+      >
+        Resto 3
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th
+        scope="row"
+      >
+        bob
+      </th>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+      <td
+        className="text-center"
+      >
+        
+      </td>
+      <td
+        className="text-center"
+      >
+        
+      </td>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+    </tr>
+    <tr>
+      <th
+        scope="row"
+      >
+        roger
+      </th>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+      <td
+        className="text-center"
+      >
+        
+      </td>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+    </tr>
+    <tr>
+      <th
+        scope="row"
+      >
+        mickey
+      </th>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+      <td
+        className="text-center"
+      >
+        
+      </td>
+      <td
+        className="text-center"
+      >
+        X
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`TableBody Snapshot capturing Snapshot of TableBody 1`] = `
+<tbody>
+  <tr>
+    <th
+      scope="row"
+    >
+      bob
+    </th>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+    <td
+      className="text-center"
+    >
+      
+    </td>
+    <td
+      className="text-center"
+    >
+      
+    </td>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+  </tr>
+  <tr>
+    <th
+      scope="row"
+    >
+      roger
+    </th>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+    <td
+      className="text-center"
+    >
+      
+    </td>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+  </tr>
+  <tr>
+    <th
+      scope="row"
+    >
+      mickey
+    </th>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+    <td
+      className="text-center"
+    >
+      
+    </td>
+    <td
+      className="text-center"
+    >
+      X
+    </td>
+  </tr>
+</tbody>
+`;
+
+exports[`TableHead Snapshot capturing Snapshot of TableHead 1`] = `
+<thead>
+  <tr>
+    <th />
+    <th
+      className="text-center"
+    >
+      Resto 1
+    </th>
+    <th
+      className="text-center"
+    >
+      Resto 2
+    </th>
+    <th
+      className="text-center"
+    >
+      Resto 3
+    </th>
+  </tr>
+</thead>
+`;

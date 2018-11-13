@@ -4,4 +4,10 @@ import PlaceCard from './PlaceCard';
 import UsersVoices from './UsersVoices';
 import VoteCollapser from './VoteCollapser';
 
-export { AddAVoice, GetUsersVotes, PlaceCard, UsersVoices, VoteCollapser };
+export {
+  AddAVoice,
+  GetUsersVotes,
+  PlaceCard,
+  UsersVoices,
+  VoteCollapser
+};
