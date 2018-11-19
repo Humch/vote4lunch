@@ -46,5 +46,4 @@ Vote.belongsToMany(Place, { through: VotePlace });
 Place.belongsToMany(Vote, { through: VotePlace });
 
 // Database initialization
-sequelize.sync()
-  .then(() => sequelize.close());
+sequelize.sync();

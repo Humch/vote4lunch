@@ -1,16 +1,17 @@
 import express from 'express';
 
-import User from '../../sequelize';
+import { User } from '../../sequelize';
 
 const router = express.Router();
 
 router.post('/add', (req, res) => {
-  if (
+  if (req.body.password !== req.body.password_repeat) {
+    res.json({ created: false, message: 'Submitted passwords are differents' });
+  } else if (
     req.body.pseudo
     && req.body.email
     && req.body.password
     && req.body.password_repeat
-    && (req.body.password === req.body.password_repeat)
   ) {
     User
       .create({
@@ -18,7 +19,8 @@ router.post('/add', (req, res) => {
         email: req.body.email,
         password: req.body.password,
       })
-      .then(() => res.json({ created: 'success' }));
+      .then(() => res.json({ created: true }))
+      .catch(() => res.json({ created: 'error' }));
   } else {
     res.sendStatus(400);
   }
