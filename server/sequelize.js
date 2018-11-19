@@ -1,6 +1,11 @@
 import Sequelize from 'sequelize';
 
-import { PlaceModel, VoteModel, VoiceModel } from './models';
+import {
+  PlaceModel,
+  VoteModel,
+  VoiceModel,
+  UserModel,
+} from './models';
 
 require('dotenv').config();
 
@@ -28,6 +33,7 @@ export const sequelize = new Sequelize(process.env.POSTGRES_DB_URL, config);
 export const Place = PlaceModel(sequelize, Sequelize);
 export const Vote = VoteModel(sequelize, Sequelize);
 export const Voice = VoiceModel(sequelize, Sequelize);
+export const User = UserModel(sequelize, Sequelize);
 
 // Relationship between tables
 Voice.belongsTo(Vote);
