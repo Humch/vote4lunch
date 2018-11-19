@@ -17,6 +17,7 @@ cache:
 
 before_script:
   - npm install
+  - npm run sync
 
 test:
   script:

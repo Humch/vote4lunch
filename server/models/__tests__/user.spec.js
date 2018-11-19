@@ -5,7 +5,6 @@ import { expect } from 'chai';
 
 import { User } from '../../sequelize';
 
-
 describe('Test User Model', () => {
   it('returns the user model', () => {
     expect(User).to.be.ok;
