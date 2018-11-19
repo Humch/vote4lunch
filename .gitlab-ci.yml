@@ -1,5 +1,16 @@
 image: node:10.11
 
+services:
+  - postgres
+
+variables:
+    ENV: dev
+    DATABASE_URL: "postgres://db_user:fakepassword@postgres:5432/v4l"
+    POSTGRES_DB: v4l
+    POSTGRES_USER: db_user
+    POSTGRES_PASSWORD: fakepassword
+
+
 cache:
   paths:
   - node_modules/
