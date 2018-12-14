@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BeginVote Snapshot capturing Snapshot of BeginVote, user is logged in 1`] = `
+<div
+  className="BeginVote container-fluid"
+>
+  <div
+    className="justify-content-center align-items-center h-100 no-gutters row"
+  >
+    <div
+      className="bg-blue p-5 text-center rounded col-12 col-md-4"
+    >
+      <p
+        className="text-white"
+      >
+        Connecte toi pour créer un vote
+      </p>
+      <a
+        aria-label={null}
+        className="btn btn-success disabled"
+        disabled={true}
+        href="/create-a-vote"
+        onClick={[Function]}
+      >
+        Organiser un vote
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BeginVote Snapshot capturing Snapshot of BeginVote, user is not logged in 1`] = `
+<div
+  className="BeginVote container-fluid"
+>
+  <div
+    className="justify-content-center align-items-center h-100 no-gutters row"
+  >
+    <div
+      className="bg-blue p-5 text-center rounded col-12 col-md-4"
+    >
+      <p
+        className="text-white"
+      >
+        Connecte toi pour créer un vote
+      </p>
+      <a
+        aria-label={null}
+        className="btn btn-success disabled"
+        disabled={true}
+        href="/create-a-vote"
+        onClick={[Function]}
+      >
+        Organiser un vote
+      </a>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,314 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUp Snapshot capturing Snapshot of SignUp 1`] = `
+<div
+  className="SignUp container-fluid"
+>
+  <div
+    className="justify-content-center align-items-center h-100 no-gutters row"
+  >
+    <div
+      className="bg-blue p-5 rounded col-12 col-md-4"
+    >
+      <form
+        className=""
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className=" text-white"
+            htmlFor="pseudo"
+          >
+            Choisis ton pseudo
+          </label>
+          <div
+            className="input-group"
+          >
+            <input
+              className="form-control "
+              id="pseudo"
+              name="pseudo"
+              onChange={[Function]}
+              required={true}
+              type="text"
+              value=""
+            />
+            
+            <div
+              className="invalid-feedback"
+            >
+              Ce pseudo existe déjà
+            </div>
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className=" text-white"
+            htmlFor="email"
+          >
+            Indique ton email
+          </label>
+          <div
+            className="input-group"
+          >
+            <input
+              className="form-control "
+              id="email"
+              name="email"
+              onChange={[Function]}
+              required={true}
+              type="email"
+              value=""
+            />
+            
+            <div
+              className="invalid-feedback"
+            >
+              Cet email est déjà utilisé
+            </div>
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className=" text-white"
+            htmlFor="password"
+          >
+            Choisis ton mot de passe
+          </label>
+          <div
+            className="input-group"
+          >
+            <input
+              className="form-control "
+              id="password"
+              name="password"
+              onChange={[Function]}
+              required={true}
+              type="password"
+              value=""
+            />
+            
+            
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className=" text-white"
+            htmlFor="passwordRepeater"
+          >
+            Répète ton mot de passe
+          </label>
+          <div
+            className="input-group"
+          >
+            <input
+              className="form-control "
+              id="passwordRepeater"
+              name="passwordRepeater"
+              onChange={[Function]}
+              required={true}
+              type="password"
+              value=""
+            />
+            
+            <div
+              className="invalid-feedback"
+            >
+              Les mots de passe sont différents
+            </div>
+          </div>
+        </div>
+        <div
+          className="text-center mt-5"
+        >
+          <button
+            aria-label={null}
+            className="btn btn-success"
+            onClick={[Function]}
+          >
+            Valider
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SignUp Snapshot with loading capturing Snapshot of SignUp with loading 1`] = `
+<div
+  className="SignUp container-fluid"
+>
+  <div
+    className="justify-content-center align-items-center h-100 no-gutters row"
+  >
+    <div
+      className="bg-blue p-5 rounded col-12 col-md-4"
+    >
+      <form
+        className=""
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className=" text-white"
+            htmlFor="pseudo"
+          >
+            Choisis ton pseudo
+          </label>
+          <div
+            className="input-group"
+          >
+            <input
+              className="form-control "
+              id="pseudo"
+              name="pseudo"
+              onChange={[Function]}
+              required={true}
+              type="text"
+              value=""
+            />
+            
+            <div
+              className="invalid-feedback"
+            >
+              Ce pseudo existe déjà
+            </div>
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className=" text-white"
+            htmlFor="email"
+          >
+            Indique ton email
+          </label>
+          <div
+            className="input-group"
+          >
+            <input
+              className="form-control "
+              id="email"
+              name="email"
+              onChange={[Function]}
+              required={true}
+              type="email"
+              value=""
+            />
+            
+            <div
+              className="invalid-feedback"
+            >
+              Cet email est déjà utilisé
+            </div>
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className=" text-white"
+            htmlFor="password"
+          >
+            Choisis ton mot de passe
+          </label>
+          <div
+            className="input-group"
+          >
+            <input
+              className="form-control "
+              id="password"
+              name="password"
+              onChange={[Function]}
+              required={true}
+              type="password"
+              value=""
+            />
+            
+            
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className=" text-white"
+            htmlFor="passwordRepeater"
+          >
+            Répète ton mot de passe
+          </label>
+          <div
+            className="input-group"
+          >
+            <input
+              className="form-control "
+              id="passwordRepeater"
+              name="passwordRepeater"
+              onChange={[Function]}
+              required={true}
+              type="password"
+              value=""
+            />
+            
+            <div
+              className="invalid-feedback"
+            >
+              Les mots de passe sont différents
+            </div>
+          </div>
+        </div>
+        <div
+          className="text-center mt-5"
+        >
+          <button
+            aria-label={null}
+            className="btn btn-success"
+            onClick={[Function]}
+          >
+            Requête en cours
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SignUp Snapshot with user created capturing Snapshot of SignUp with user created 1`] = `
+<div
+  className="SignUp container-fluid"
+>
+  <div
+    className="justify-content-center align-items-center h-100 no-gutters row"
+  >
+    <div
+      className="bg-blue p-5 rounded col-12 col-md-4"
+    >
+      <div>
+        <p
+          className="text-center text-white"
+        >
+          Ton compte a été créé.
+        </p>
+        <p
+          className="text-center text-white"
+        >
+          Tu peux maintenant t'identifier.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

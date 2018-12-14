@@ -1,7 +1,14 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClipboard } from '@fortawesome/free-regular-svg-icons';
 
-import { Container, Row, Col, ButtonGroup, Button, Tooltip } from 'reactstrap';
+import {
+  Container,
+  Row,
+  Col,
+  ButtonGroup,
+  Button,
+  Tooltip,
+} from 'reactstrap';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import React, { Component } from 'react';
@@ -14,8 +21,8 @@ import 'moment/locale/fr';
 
 import { getPlacesList, getAVote, getUserVoices } from '../actions';
 
-import { PlaceCard, UsersVoices } from './';
-import { DisplayWinner, MailToButton, ButtonEndDate } from '../';
+import { PlaceCard, UsersVoices } from '.';
+import { DisplayWinner, MailToButton, ButtonEndDate } from '..';
 import { VoteMap } from '../../Map';
 import { LoginModal } from '../../Accounts';
 
@@ -24,16 +31,20 @@ moment.locale('fr');
 class AddAVoice extends Component {
   constructor(props) {
     super(props);
+    // eslint-disable-next-line react/destructuring-assignment
     const { url } = this.props.match.params;
     const pseudo = localStorage.getItem('pseudo');
     const email = localStorage.getItem('email');
+    const authenticatedStorage = localStorage.getItem('authenticated');
+    const authenticated = JSON.parse(authenticatedStorage);
+    const { getUserVoices: gUV } = this.props;
 
     // open a modal if user is not connected. User must give a pseudo and email to vote.
     let openLoginModal = false;
-    if (!pseudo || !email) {
+    if (!authenticated) {
       openLoginModal = true;
     } else {
-      this.props.getUserVoices(pseudo, email, [url]);
+      gUV(pseudo, email, [url]);
     }
 
     this.state = {
@@ -45,11 +56,14 @@ class AddAVoice extends Component {
   }
 
   componentDidMount() {
+    const { getPlacesList: getPL } = this.props;
+    // eslint-disable-next-line react/destructuring-assignment
     const { url } = this.props.match.params;
-    this.props.getPlacesList(url);
+    getPL(url);
   }
 
   componentDidUpdate() {
+    // eslint-disable-next-line react/destructuring-assignment
     const { url } = this.props.match.params;
     const { getAVoteUrl, getAVote: getAV } = this.props;
     if (getAVoteUrl !== url) {
@@ -58,13 +72,17 @@ class AddAVoice extends Component {
   }
 
   toggleTooltip() {
-    this.setState({
-      tooltipOpen: !this.state.tooltipOpen
-    });
+    this.setState(
+      prevState => ({
+        tooltipOpen: !prevState
+      })
+    );
   }
 
   render() {
     const { restaurants, getVoicesCount, remainingTime } = this.props;
+    const { openLoginModal, tooltipOpen } = this.state;
+    // eslint-disable-next-line react/destructuring-assignment
     const { url } = this.props.match.params;
     // filter the list of restaurants with url parameter to display only one
     let listOfRestaurants;
@@ -90,7 +108,7 @@ class AddAVoice extends Component {
                 voteUrl={url}
               />
             </Col>
-          </Row >
+          </Row>
         );
       }
     }
@@ -129,7 +147,7 @@ class AddAVoice extends Component {
             <MailToButton className="mr-2" />
             <ButtonEndDate />
           </Col>
-        </Row >
+        </Row>
         {displayTrophy}
         <Row className="justify-content-center pt-3">
           {listOfRestaurants.map(restaurant => (
@@ -152,16 +170,16 @@ class AddAVoice extends Component {
             <VoteMap restaurants={listOfRestaurants} />
           </Col>
         </Row>
-        {this.state.openLoginModal ? <LoginModal open voteUrl={url} /> : ''}
+        {openLoginModal ? <LoginModal open voteUrl={url} /> : ''}
         <Tooltip
           placement="bottom"
-          isOpen={this.state.tooltipOpen}
+          isOpen={tooltipOpen}
           target="TooltipCopyToClipBoard"
           toggle={this.toggleTooltip}
         >
-          Copier vers le presse-papiers
+          {'Copier vers le presse-papiers'}
         </Tooltip>
-      </Container >
+      </Container>
     );
   }
 }

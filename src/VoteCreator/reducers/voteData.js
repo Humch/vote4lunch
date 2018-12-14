@@ -3,6 +3,7 @@ const initialState = {
   date: null,
   pseudo: '',
   email: '',
+  url: '',
   places: [],
 };
 
@@ -20,8 +21,8 @@ export default (state = initialState, action) => {
     case 'ADD_A_PLACE_SUCCESS':
     {
       const newPlaces = state.places;
-      if (action.result.data.added) {
-        newPlaces.push(action.result.data.place);
+      if (action.result.added) {
+        newPlaces.push(action.result.place);
       }
       return {
         ...state,
@@ -32,8 +33,8 @@ export default (state = initialState, action) => {
     {
       const remainPlaces = state.places;
       let result;
-      if (action.result.data.deleted) {
-        result = remainPlaces.filter(element => element.id !== action.result.data.place.id);
+      if (action.result.deleted) {
+        result = remainPlaces.filter(element => element.id !== action.result.place.id);
       }
       return {
         ...state,

@@ -2,10 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Row, Col, ListGroup, Button } from 'reactstrap';
+import {
+  Row,
+  Col,
+  ListGroup,
+  Button,
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-import { Place } from '../';
+import { Place } from '..';
 
 const CreateAVotePlaces = ({ voteData }) => {
   let disabledButton = true;
@@ -20,10 +25,10 @@ const CreateAVotePlaces = ({ voteData }) => {
             voteData.places.map(place => (
               <Place
                 key={place.id}
-                place_id={place.id}
-                place={place.name}
+                placeId={place.id}
+                placeName={place.name}
                 type={place.type}
-                vote_id={voteData.id}
+                voteId={voteData.id}
               />
             ))
           }
@@ -34,7 +39,9 @@ const CreateAVotePlaces = ({ voteData }) => {
           className="mt-4"
           tag={Link}
           to={`/vote/${voteData.url}`}
-        >Créer le vote</Button>
+        >
+          {'Créer le vote'}
+        </Button>
       </Col>
     </Row>
   );
@@ -49,4 +56,3 @@ const mstp = ({ voteData }) => ({
 });
 
 export default connect(mstp)(CreateAVotePlaces);
-

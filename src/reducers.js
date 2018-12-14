@@ -1,6 +1,11 @@
 import { combineReducers } from 'redux';
 
-import userDataReducer from './Accounts/reducers';
+import {
+  addUserReducer,
+  emailCheckerReducer,
+  pseudoCheckerReducer,
+  userDataReducer,
+} from './Accounts/reducers';
 import topAlertReducer from './Core/reducers';
 import { listOfRestaurantsReducer, mapCoordinatesReducer, onMapAlertReducer } from './Map/reducers';
 import { createAVoteReducer, voteDataFormReducer, voteDataReducer } from './VoteCreator/reducers';
@@ -30,6 +35,9 @@ export default combineReducers({
   usersVotes: getUsersVotesReducer,
   userVoices: getUserVoicesReducer,
   getManyPlacesList: getManyPlacesListReducer,
+  addUser: addUserReducer,
+  pseudoChecker: pseudoCheckerReducer,
+  emailChecker: emailCheckerReducer,
   userData: userDataReducer,
   voteDataForm: voteDataFormReducer,
   getAVote: getAVoteReducer,

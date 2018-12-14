@@ -1,7 +1,7 @@
 import About from './About';
 import App from './App';
 import Footer from './Footer';
-import Header from './Header';
+import Header from './Header/Header';
 import NotFound from './NotFound';
 
 export {

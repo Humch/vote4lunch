@@ -13,6 +13,8 @@ import {
 
 import { FormInputPseudo, FormInputEmail } from '..';
 
+import { Label } from '../../Core';
+
 import { updateUserData } from '../actions';
 import { getUserVoices } from '../../Votes/actions';
 
@@ -77,7 +79,15 @@ class LoginModal extends Component {
         <ModalHeader>Présente toi avant de voter</ModalHeader>
         <ModalBody>
           <Form onSubmit={e => this.submitForm(e)}>
+            <Label
+              text="Choisis un pseudo"
+              forProp="pseudo"
+            />
             <FormInputPseudo />
+            <Label
+              text="Indique ton email"
+              forProp="email"
+            />
             <FormInputEmail />
             <div className="text-center mt-5">
               <Button color="success">Bonjour</Button>

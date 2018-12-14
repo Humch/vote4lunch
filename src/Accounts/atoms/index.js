@@ -1,4 +1,5 @@
-import FormInputPseudo from './FormInputPseudo';
-import FormInputEmail from './FormInputEmail';
+import FormInputPassword from './FormInputPassword/FormInputPassword';
+import FormInputPseudo from './FormInputPseudo/FormInputPseudo';
+import FormInputEmail from './FormInputEmail/FormInputEmail';
 
-export { FormInputPseudo, FormInputEmail };
+export { FormInputPassword, FormInputPseudo, FormInputEmail };

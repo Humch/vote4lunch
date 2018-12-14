@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-import { Place, sequelize } from '../sequelize';
+import { Place, sequelize } from '../server/sequelize';
 
 function importPlaces() {
   const PlacesData = JSON.parse(fs.readFileSync('.json_data/places.json', 'UTF-8'));
@@ -13,8 +13,7 @@ function importPlaces() {
         lng: parseFloat(place.lon),
         type: place.tags.amenity
       }
-    })
-  );
+    }));
 }
 
 sequelize.sync()

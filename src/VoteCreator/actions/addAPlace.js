@@ -26,7 +26,7 @@ export function addAPlace(voteId, placeId) {
           place_id: placeId,
         }
       })
-        .then(result => dispatch(addAPlaceSuccess(result)))
+        .then(result => dispatch(addAPlaceSuccess(result.data)))
         .catch(error => dispatch(addAPlaceFailure(error)))
     );
   };

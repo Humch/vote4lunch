@@ -1,4 +1,11 @@
 import LoginModal from './LoginModal';
-import LogoutView from './LogoutView';
+import LogoutView from './LogoutView/LogoutView';
+import SignUp from './SignUp/SignUp';
+import SignIn from './SignIn/SignIn';
 
-export { LoginModal, LogoutView };
+export {
+  LoginModal,
+  LogoutView,
+  SignUp,
+  SignIn,
+};

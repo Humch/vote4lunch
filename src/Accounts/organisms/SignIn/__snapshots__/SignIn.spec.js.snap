@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn Snapshot capturing Snapshot of SignIn 1`] = `
+<div
+  className="SignIn container-fluid"
+>
+  <div
+    className="justify-content-center align-items-center h-100 no-gutters row"
+  >
+    <div
+      className="bg-blue p-5 rounded col-12 col-md-4"
+    >
+      <form
+        className=""
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className=" text-white"
+            htmlFor="pseudo"
+          >
+            Indique ton pseudo
+          </label>
+          <div
+            className="input-group"
+          >
+            <input
+              className="form-control "
+              id="pseudo"
+              name="pseudo"
+              onChange={[Function]}
+              required={true}
+              type="text"
+              value=""
+            />
+            
+            <div
+              className="invalid-feedback"
+            >
+              Ce pseudo existe déjà
+            </div>
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className=" text-white"
+            htmlFor="password"
+          >
+            Indique ton mot de passe
+          </label>
+          <div
+            className="input-group"
+          >
+            <input
+              className="form-control "
+              id="password"
+              name="password"
+              onChange={[Function]}
+              required={true}
+              type="password"
+              value=""
+            />
+            
+            
+          </div>
+        </div>
+        <div
+          className="text-center mt-5"
+        >
+          <button
+            aria-label={null}
+            className="btn btn-success"
+            onClick={[Function]}
+          >
+            Se connecter
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`SignIn Snapshot with loginError true capturing Snapshot of SignIn with loginError true 1`] = `
+<div
+  className="SignIn container-fluid"
+>
+  <div
+    className="justify-content-center align-items-center h-100 no-gutters row"
+  >
+    <div
+      className="bg-blue p-5 rounded col-12 col-md-4"
+    >
+      <form
+        className=""
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group"
+        >
+          <label
+            className=" text-white"
+            htmlFor="pseudo"
+          >
+            Indique ton pseudo
+          </label>
+          <div
+            className="input-group"
+          >
+            <input
+              className="form-control "
+              id="pseudo"
+              name="pseudo"
+              onChange={[Function]}
+              required={true}
+              type="text"
+              value=""
+            />
+            
+            <div
+              className="invalid-feedback"
+            >
+              Ce pseudo existe déjà
+            </div>
+          </div>
+        </div>
+        <div
+          className="form-group"
+        >
+          <label
+            className=" text-white"
+            htmlFor="password"
+          >
+            Indique ton mot de passe
+          </label>
+          <div
+            className="input-group"
+          >
+            <input
+              className="form-control "
+              id="password"
+              name="password"
+              onChange={[Function]}
+              required={true}
+              type="password"
+              value=""
+            />
+            
+            
+          </div>
+        </div>
+        <div
+          className="text-center mt-5"
+        >
+          <button
+            aria-label={null}
+            className="btn btn-success"
+            onClick={[Function]}
+          >
+            Se connecter
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

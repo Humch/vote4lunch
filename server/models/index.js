@@ -4,8 +4,11 @@ import VoiceModel from './voice';
 
 import VoteModel from './vote';
 
+import UserModel from './user';
+
 export {
   PlaceModel,
   VoteModel,
-  VoiceModel
+  VoiceModel,
+  UserModel,
 };

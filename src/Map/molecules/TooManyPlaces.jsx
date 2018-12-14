@@ -15,9 +15,13 @@ const TooManyPlaces = ({ messageType, status, message }) => {
     picto = <FontAwesomeIcon icon={faExclamationTriangle} />;
   }
   return (
-    <Control position="topright" >
-      <Alert color={messageType} isOpen={status} >
-        {picto} {message} {picto}
+    <Control position="topright">
+      <Alert color={messageType} isOpen={status}>
+        {picto}
+        { ' ' }
+        {message}
+        { ' ' }
+        {picto}
       </Alert>
     </Control>
   );
@@ -30,7 +34,7 @@ TooManyPlaces.propTypes = {
 };
 
 const mstp = ({ onMapAlert }) => ({
-  messageType: onMapAlert.message_type,
+  messageType: onMapAlert.messageType,
   status: onMapAlert.status,
   message: onMapAlert.message
 });

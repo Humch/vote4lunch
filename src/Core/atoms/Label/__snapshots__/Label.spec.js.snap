@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Label Snapshot capturing Snapshot of Label with text and forProp only 1`] = `
+<label
+  className=""
+  htmlFor="leLabel"
+>
+  Le superbe titre
+</label>
+`;
+
+exports[`Label Snapshot capturing Snapshot of Label with text, forProp and color 1`] = `
+<label
+  className=" text-white"
+  htmlFor="leLabel"
+>
+  Le superbe titre
+</label>
+`;

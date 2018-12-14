@@ -1,0 +1,25 @@
+image: node:10.11
+
+services:
+  - postgres
+
+variables:
+    ENV: test
+    POSTGRES_DB_URL: postgres://db_user:fakepassword@postgres:5432/v4l
+    POSTGRES_DB: v4l
+    POSTGRES_USER: db_user
+    POSTGRES_PASSWORD: fakepassword
+
+
+cache:
+  paths:
+  - node_modules/
+
+before_script:
+  - npm install
+  - npm run sync
+
+test:
+  script:
+    - npm run lint
+    - npm run test

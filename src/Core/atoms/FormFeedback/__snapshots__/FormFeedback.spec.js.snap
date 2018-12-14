@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormFeedback Snapshot capturing Snapshot of FormFeedback with valid equal false 1`] = `
+<div
+  className="invalid-feedback"
+>
+  Ce champ est invalide ;)
+</div>
+`;
+
+exports[`FormFeedback Snapshot capturing Snapshot of ValueChecker with valid 1`] = `
+<div
+  className="valid-feedback"
+>
+  Ce champ est valide ;)
+</div>
+`;

@@ -1,12 +1,12 @@
-import addVoiceReducer from './addVoice';
-import deleteAVoteReducer from './deleteAVote';
-import getAllVoicesForAVoteReducer from './getAllVoicesForAVote';
-import getAVoteReducer from './getAVote';
-import getManyPlacesListReducer from './getManyPlacesList';
-import getPlacesListReducer from './getPlacesList';
-import getUsersVotesReducer from './getUsersVotes';
-import getUserVoicesReducer from './getUserVoices';
-import getVoicesCountReducer from './getVoicesCount';
+import addVoiceReducer from './addVoice/addVoice';
+import deleteAVoteReducer from './deleteAVote/deleteAVote';
+import getAllVoicesForAVoteReducer from './getAllVoicesForAVote/getAllVoicesForAVote';
+import getAVoteReducer from './getAVote/getAVote';
+import getManyPlacesListReducer from './getManyPlacesList/getManyPlacesList';
+import getPlacesListReducer from './getPlacesList/getPlacesList';
+import getUsersVotesReducer from './getUsersVotes/getUsersVotes';
+import getUserVoicesReducer from './getUserVoices/getUserVoices';
+import getVoicesCountReducer from './getVoicesCount/getVoicesCount';
 
 export {
   addVoiceReducer,

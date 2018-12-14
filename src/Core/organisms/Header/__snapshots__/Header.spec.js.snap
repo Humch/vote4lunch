@@ -1,0 +1,273 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Snapshot, screen larger than 768px capturing Snapshot of Header with pseudo and email, screen larger than 768px 1`] = `
+<div
+  className="Header"
+>
+  <div
+    className="AlertBox alert alert-success fade"
+    role="alert"
+  >
+    
+    Ceci est un test
+    
+  </div>
+  <nav
+    className="bg-blue navbar navbar-expand-md navbar-dark"
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+    >
+      Vote 4 Lunch
+    </a>
+    <button
+      className="navbar-toggler"
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      className="collapse navbar-collapse"
+      style={Object {}}
+    >
+      <ul
+        className="ml-auto navbar-nav"
+      >
+        <li
+          className="mr-3 nav-item"
+        >
+          <a
+            aria-label={null}
+            className="mr-2 btn btn-outline-success"
+            href="/signin"
+            id="loginButton"
+            onClick={[Function]}
+          >
+            S'identifier
+          </a>
+          <a
+            aria-label={null}
+            className="btn btn-success"
+            href="/signup"
+            id="signupButton"
+            onClick={[Function]}
+          >
+            S'inscrire
+          </a>
+        </li>
+        
+        
+      </ul>
+    </div>
+  </nav>
+  
+</div>
+`;
+
+exports[`Header Snapshot, screen larger than 768px capturing Snapshot of Header, user is not logged in, screen larger than 768px 1`] = `
+<div
+  className="Header"
+>
+  <div
+    className="AlertBox alert alert-success fade"
+    role="alert"
+  >
+    
+    Ceci est un test
+    
+  </div>
+  <nav
+    className="bg-blue navbar navbar-expand-md navbar-dark"
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+    >
+      Vote 4 Lunch
+    </a>
+    <button
+      className="navbar-toggler"
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      className="collapse navbar-collapse"
+      style={Object {}}
+    >
+      <ul
+        className="ml-auto navbar-nav"
+      >
+        <li
+          className="mr-3 nav-item"
+        >
+          <a
+            aria-label={null}
+            className="mr-2 btn btn-outline-success"
+            href="/signin"
+            id="loginButton"
+            onClick={[Function]}
+          >
+            S'identifier
+          </a>
+          <a
+            aria-label={null}
+            className="btn btn-success"
+            href="/signup"
+            id="signupButton"
+            onClick={[Function]}
+          >
+            S'inscrire
+          </a>
+        </li>
+        
+        
+      </ul>
+    </div>
+  </nav>
+  
+</div>
+`;
+
+exports[`Header Snapshot, screen smaller than 768px capturing Snapshot of Header with pseudo and email, screen smaller than 768px 1`] = `
+<div
+  className="Header"
+>
+  <div
+    className="AlertBox alert alert-success fade"
+    role="alert"
+  >
+    
+    Ceci est un test
+    
+  </div>
+  <nav
+    className="bg-blue navbar navbar-expand-md navbar-dark"
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+    >
+      Vote 4 Lunch
+    </a>
+    <button
+      className="navbar-toggler"
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      className="collapse navbar-collapse"
+      style={Object {}}
+    >
+      <ul
+        className="ml-auto navbar-nav"
+      >
+        <li
+          className="mr-3 nav-item"
+        >
+          <a
+            aria-label={null}
+            className="mr-2 btn btn-outline-success"
+            href="/signin"
+            id="loginButton"
+            onClick={[Function]}
+          >
+            S'identifier
+          </a>
+          <a
+            aria-label={null}
+            className="btn btn-success"
+            href="/signup"
+            id="signupButton"
+            onClick={[Function]}
+          >
+            S'inscrire
+          </a>
+        </li>
+        
+        
+      </ul>
+    </div>
+  </nav>
+  
+</div>
+`;
+
+exports[`Header Snapshot, screen smaller than 768px capturing Snapshot of Header, user is not logged in, screen smaller than 768px 1`] = `
+<div
+  className="Header"
+>
+  <div
+    className="AlertBox alert alert-success fade"
+    role="alert"
+  >
+    
+    Ceci est un test
+    
+  </div>
+  <nav
+    className="bg-blue navbar navbar-expand-md navbar-dark"
+  >
+    <a
+      className="navbar-brand"
+      href="/"
+    >
+      Vote 4 Lunch
+    </a>
+    <button
+      className="navbar-toggler"
+      onClick={[Function]}
+      type="button"
+    >
+      <span
+        className="navbar-toggler-icon"
+      />
+    </button>
+    <div
+      className="collapse navbar-collapse"
+      style={Object {}}
+    >
+      <ul
+        className="ml-auto navbar-nav"
+      >
+        <li
+          className="mr-3 nav-item"
+        >
+          <a
+            aria-label={null}
+            className="mr-2 btn btn-outline-success"
+            href="/signin"
+            id="loginButton"
+            onClick={[Function]}
+          >
+            S'identifier
+          </a>
+          <a
+            aria-label={null}
+            className="btn btn-success"
+            href="/signup"
+            id="signupButton"
+            onClick={[Function]}
+          >
+            S'inscrire
+          </a>
+        </li>
+        
+        
+      </ul>
+    </div>
+  </nav>
+  
+</div>
+`;

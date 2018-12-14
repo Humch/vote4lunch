@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormInputPseudo Snapshot capturing Snapshot of FormInputPseudo 1`] = `
+<input
+  className="form-control "
+  id="pseudo"
+  name="pseudo"
+  onChange={[Function]}
+  required={true}
+  type="text"
+  value="bob"
+/>
+`;

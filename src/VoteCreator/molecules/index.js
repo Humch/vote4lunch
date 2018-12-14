@@ -1,3 +1,3 @@
-import Place from './Place';
+import Place from './Place/Place';
 
 export default Place;

@@ -2,9 +2,12 @@ import {
   ButtonCollapser,
   FormInputDate,
   FormInputEndDate,
+  Label,
   TableBody,
   TableHead,
   Title5,
+  ValueChecker,
+  FormFeedback,
 } from './atoms';
 
 import { Table, TopAlert } from './molecules';
@@ -21,9 +24,12 @@ export {
   ButtonCollapser,
   FormInputDate,
   FormInputEndDate,
+  Label,
   TableBody,
   TableHead,
   Title5,
+  ValueChecker,
+  FormFeedback,
   Table,
   TopAlert,
   About,

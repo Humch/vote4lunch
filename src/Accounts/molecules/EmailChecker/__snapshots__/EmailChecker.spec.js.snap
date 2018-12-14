@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmailChecker Snapshot capturing Snapshot of EmailChecker 1`] = `
+<span>
+  <svg
+    aria-hidden="true"
+    className="svg-inline--fa fa-check fa-w-16 "
+    color="green"
+    data-icon="check"
+    data-prefix="fas"
+    role="img"
+    style={Object {}}
+    viewBox="0 0 512 512"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+      fill="currentColor"
+      style={Object {}}
+    />
+  </svg>
+</span>
+`;
+
+exports[`EmailChecker Snapshot capturing Snapshot of EmailChecker with exist true 1`] = `
+<span>
+  <svg
+    aria-hidden="true"
+    className="svg-inline--fa fa-ban fa-w-16 "
+    color="red"
+    data-icon="ban"
+    data-prefix="fas"
+    role="img"
+    style={Object {}}
+    viewBox="0 0 512 512"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M256 8C119.034 8 8 119.033 8 256s111.034 248 248 248 248-111.034 248-248S392.967 8 256 8zm130.108 117.892c65.448 65.448 70 165.481 20.677 235.637L150.47 105.216c70.204-49.356 170.226-44.735 235.638 20.676zM125.892 386.108c-65.448-65.448-70-165.481-20.677-235.637L361.53 406.784c-70.203 49.356-170.226 44.736-235.638-20.676z"
+      fill="currentColor"
+      style={Object {}}
+    />
+  </svg>
+</span>
+`;
+
+exports[`EmailChecker Snapshot capturing Snapshot of EmailChecker with loading 1`] = `
+<span>
+  <svg
+    aria-hidden="true"
+    className="svg-inline--fa fa-spinner fa-w-16 fa-spin "
+    data-icon="spinner"
+    data-prefix="fas"
+    role="img"
+    style={Object {}}
+    viewBox="0 0 512 512"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+      fill="currentColor"
+      style={Object {}}
+    />
+  </svg>
+</span>
+`;

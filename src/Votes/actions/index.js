@@ -1,11 +1,11 @@
-import { addVoice } from './addVoice';
-import { deleteAVote } from './deleteAVote';
-import { getAllVoicesForAVote } from './getAllVoicesForAVote';
-import { getAVote } from './getAVote';
-import { getPlacesList } from './getPlacesList';
-import { getUsersVotes } from './getUsersVotes';
-import { getUserVoices } from './getUserVoices';
-import { getVoiceCount } from './getVoiceCount';
+import { addVoice } from './addVoice/addVoice';
+import { deleteAVote } from './deleteAVote/deleteAVote';
+import { getAllVoicesForAVote } from './getAllVoicesForAVote/getAllVoicesForAVote';
+import { getAVote } from './getAVote/getAVote';
+import { getPlacesList } from './getPlacesList/getPlacesList';
+import { getUsersVotes } from './getUsersVotes/getUsersVotes';
+import { getUserVoices } from './getUserVoices/getUserVoices';
+import { getVoiceCount } from './getVoiceCount/getVoiceCount';
 
 export {
   addVoice,

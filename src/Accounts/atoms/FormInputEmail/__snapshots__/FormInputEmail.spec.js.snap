@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormInputEmail Snapshot capturing Snapshot of FormInputEmail 1`] = `
+<input
+  className="form-control "
+  id="email"
+  name="email"
+  onChange={[Function]}
+  required={true}
+  type="email"
+  value="bob@bob.com"
+/>
+`;
