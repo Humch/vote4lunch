@@ -4,8 +4,7 @@ export default (sequelize, type) => sequelize.define('vote', {
     primaryKey: true,
     autoIncrement: true
   },
-  pseudo: type.STRING,
-  email: type.STRING,
+  title: type.STRING,
   date: type.DATE,
   end_date: type.DATE,
   url: type.STRING,

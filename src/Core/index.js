@@ -1,5 +1,6 @@
 import {
   ButtonCollapser,
+  FormInput,
   FormInputDate,
   FormInputEndDate,
   Label,
@@ -22,6 +23,7 @@ import {
 
 export {
   ButtonCollapser,
+  FormInput,
   FormInputDate,
   FormInputEndDate,
   Label,

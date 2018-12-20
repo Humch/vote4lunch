@@ -75,6 +75,18 @@ export default (state = initialState, action) => {
         ...state,
         loginError: false,
       };
+    case 'RESET_PASSWORD_DATA':
+      return {
+        ...state,
+        pseudo: '',
+        email: '',
+        password: '',
+        passwordRepeater: '',
+      };
+    case 'RESET_USER_DATA':
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

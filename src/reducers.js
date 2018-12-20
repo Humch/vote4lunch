@@ -5,10 +5,15 @@ import {
   emailCheckerReducer,
   pseudoCheckerReducer,
   userDataReducer,
+  passwordCheckerReducer,
 } from './Accounts/reducers';
+
 import topAlertReducer from './Core/reducers';
+
 import { listOfRestaurantsReducer, mapCoordinatesReducer, onMapAlertReducer } from './Map/reducers';
+
 import { createAVoteReducer, voteDataFormReducer, voteDataReducer } from './VoteCreator/reducers';
+
 import {
   addVoiceReducer,
   deleteAVoteReducer,
@@ -39,6 +44,7 @@ export default combineReducers({
   pseudoChecker: pseudoCheckerReducer,
   emailChecker: emailCheckerReducer,
   userData: userDataReducer,
+  passwordChecker: passwordCheckerReducer,
   voteDataForm: voteDataFormReducer,
   getAVote: getAVoteReducer,
   allVoicesForAVote: getAllVoicesForAVoteReducer,

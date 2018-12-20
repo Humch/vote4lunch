@@ -7,7 +7,12 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import {
+  Map,
+  TileLayer,
+  Marker,
+  Popup
+} from 'react-leaflet';
 
 import { Button } from 'reactstrap';
 
@@ -18,11 +23,18 @@ import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 import L from 'leaflet';
 
-import { fetchRestaurants, offMapAlert, onMapAlert, resetListOfRestaurants, updateMapCoordinates, updateZoomLevel } from '../actions';
+import {
+  fetchRestaurants,
+  offMapAlert,
+  onMapAlert,
+  resetListOfRestaurants,
+  updateMapCoordinates,
+  updateZoomLevel,
+} from '../actions';
 import { addAPlace } from '../../VoteCreator/actions/addAPlace';
 
 
-import { Controls } from '../';
+import { Controls } from '..';
 
 /* eslint no-underscore-dangle: ["error", { "allow": ["_getIconUrl","_northEast","_southWest"] }] */
 delete L.Icon.Default.prototype._getIconUrl;
@@ -102,10 +114,7 @@ class PlaceMap extends Component {
 
   addAPlaceToVote(voteData, placeId) {
     const { addAPlace: addAP, onMapAlert: onMA, offMapAlert: offMA } = this.props;
-    if (voteData.places.length > 4) {
-      onMA('danger', 'Le saviez vous : trop de choix tue le choix.');
-      setTimeout(() => { offMA(); }, 3000);
-    } else if (voteData.places.filter(place => place.id === placeId).length > 0) {
+    if (voteData.places.filter(place => place.id === placeId).length > 0) {
       onMA('danger', 'Hola, attention il existe déjà !');
       setTimeout(() => { offMA(); }, 3000);
     } else {
@@ -144,7 +153,10 @@ class PlaceMap extends Component {
             <Button
               color="success"
               onClick={() => this.addAPlaceToVote(voteData, restaurant.id)}
-            ><FontAwesomeIcon icon={faPlus} /></Button>
+            >
+              <FontAwesomeIcon icon={faPlus} />
+
+            </Button>
           </p>
         </Popup>
       </Marker>
@@ -184,14 +196,18 @@ PlaceMap.propTypes = {
   updateMapCoordinates: PropTypes.func.isRequired,
   updateZoomLevel: PropTypes.func.isRequired,
   resetListOfRestaurants: PropTypes.func.isRequired,
-  restaurants: PropTypes.objectOf(
-    PropTypes.arrayOf(
-      PropTypes.object
-    )
+  restaurants: PropTypes.arrayOf(
+    PropTypes.object
   ).isRequired,
-  voteData: PropTypes.objectOf(PropTypes.object).isRequired,
-  error: PropTypes.objectOf().isRequired,
-  loadingRestaurants: PropTypes.bool.isRequired,
+  voteData: PropTypes.shape({
+    id: PropTypes.number,
+    pseudo: PropTypes.string,
+    email: PropTypes.string,
+    url: PropTypes.string,
+    places: PropTypes.array,
+  }).isRequired,
+  error: PropTypes.objectOf(),
+  loadingRestaurants: PropTypes.bool,
   positionLatitude: PropTypes.number.isRequired,
   positionLongitude: PropTypes.number.isRequired,
   zoomLevel: PropTypes.number.isRequired,

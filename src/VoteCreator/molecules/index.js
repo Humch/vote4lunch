@@ -1,3 +1,4 @@
 import Place from './Place/Place';
+import FormGroupVoteTitle from './FormGroupVoteTitle/FormGroupVoteTitle';
 
-export default Place;
+export { Place, FormGroupVoteTitle };

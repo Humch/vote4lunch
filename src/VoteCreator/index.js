@@ -1,4 +1,4 @@
-import Place from './molecules';
+import { Place, FormGroupVoteTitle } from './molecules';
 
 import {
   CreateAVote,
@@ -9,6 +9,7 @@ import {
 
 export {
   Place,
+  FormGroupVoteTitle,
   CreateAVote,
   BeginVote,
   AddPlace,

@@ -12,9 +12,11 @@ import {
   Form,
 } from 'reactstrap';
 
+import Link from 'react-router-dom/Link';
+
 import { FormGroupPassword, FormGroupPseudo, FormGroupEmail } from '../..';
 
-import { addUser } from '../../actions';
+import { addUser, resetPasswordData } from '../../actions';
 
 import './SignUp.scss';
 
@@ -26,11 +28,13 @@ class SignUp extends Component {
       password,
       passwordRepeater,
       addUser: addU,
+      resetPasswordData: resetPData,
     } = this.props;
 
     e.preventDefault();
 
     addU(pseudo, email, password, passwordRepeater);
+    resetPData();
   }
 
   render() {
@@ -53,6 +57,18 @@ class SignUp extends Component {
           <p className="text-center text-white">
             {'Tu peux maintenant t\'identifier.'}
           </p>
+          <p className="text-center">
+            <Button
+              id="loginButton"
+              color="success"
+              className="mr-2"
+              tag={Link}
+              to="/signin"
+            >
+              {"S'identifier"}
+            </Button>
+          </p>
+
         </div>
 
       );
@@ -81,7 +97,7 @@ class SignUp extends Component {
             repeater
           />
           <div className="text-center mt-5">
-            <Button color="success">{ renderButton }</Button>
+            <Button color="success">{renderButton}</Button>
           </div>
         </Form>
       );
@@ -105,6 +121,7 @@ class SignUp extends Component {
 
 SignUp.propTypes = {
   addUser: PropTypes.func.isRequired,
+  resetPasswordData: PropTypes.func.isRequired,
   pseudo: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
@@ -124,6 +141,6 @@ const mstp = ({ userData, addUser: addUserReducer }) => ({
   loading: addUserReducer.loading,
 });
 
-const mdtp = dispatch => bindActionCreators({ addUser }, dispatch);
+const mdtp = dispatch => bindActionCreators({ addUser, resetPasswordData }, dispatch);
 
 export default connect(mstp, mdtp)(SignUp);

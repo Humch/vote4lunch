@@ -13,7 +13,10 @@ describe('FormInputPassword Snapshot', () => {
     userData: {
       password: '',
       passwordRepeater: '',
-    }
+    },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -39,7 +42,10 @@ describe('FormInputPassword (Shallow + passing the {store} directly)', () => {
     userData: {
       password: '',
       passwordRepeater: '',
-    }
+    },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -65,7 +71,10 @@ describe('FormInputEmail - REACT-REDUX (Mount + wrapping in <Provider>) without 
     userData: {
       password: '',
       passwordRepeater: '',
-    }
+    },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -98,7 +107,10 @@ describe('FormInputEmail - REACT-REDUX (Mount + wrapping in <Provider>) with rep
     userData: {
       password: '',
       passwordRepeater: '',
-    }
+    },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const mockStore = configureStore();
   let store;

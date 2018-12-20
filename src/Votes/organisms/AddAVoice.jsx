@@ -80,7 +80,14 @@ class AddAVoice extends Component {
   }
 
   render() {
-    const { restaurants, getVoicesCount, remainingTime } = this.props;
+    const {
+      restaurants,
+      getVoicesCount,
+      remainingTime,
+      voteTitle,
+      creatorPseudo,
+      creatorEmail,
+    } = this.props;
     const { openLoginModal, tooltipOpen } = this.state;
     // eslint-disable-next-line react/destructuring-assignment
     const { url } = this.props.match.params;
@@ -123,6 +130,18 @@ class AddAVoice extends Component {
       <Container fluid className="AddVoice">
         <Row className="justify-content-center">
           <Col
+            xs="12"
+            lg="8"
+          >
+            <h1 className="text-center text-white">
+              {voteTitle}
+              {' organisé par '}
+              {creatorPseudo}
+            </h1>
+          </Col>
+        </Row>
+        <Row className="justify-content-center">
+          <Col
             className="bg-blue round-corners p-3"
             xs="12"
             lg="8"
@@ -146,6 +165,14 @@ class AddAVoice extends Component {
             </ButtonGroup>
             <MailToButton className="mr-2" />
             <ButtonEndDate />
+            <a href={`mailto:${creatorEmail}`}>
+              <Button
+                color="info"
+                className="ml-2"
+              >
+                {'Contacte l\'organisateur'}
+              </Button>
+            </a>
           </Col>
         </Row>
         {displayTrophy}
@@ -199,6 +226,9 @@ AddAVoice.propTypes = {
     )
   ).isRequired,
   getAVoteUrl: PropTypes.string.isRequired,
+  voteTitle: PropTypes.string.isRequired,
+  creatorPseudo: PropTypes.string.isRequired,
+  creatorEmail: PropTypes.string.isRequired,
   remainingTime: PropTypes.string.isRequired,
   getVoicesCount: PropTypes.arrayOf(
     PropTypes.object
@@ -209,6 +239,9 @@ const mstp = ({ getPlacesList: gPL, getAVote: gAV, getVoicesCount }) => ({
   restaurants: gPL.result,
   getAVoteUrl: gAV.url,
   remainingTime: gAV.end_date,
+  voteTitle: gAV.title,
+  creatorPseudo: gAV.pseudo,
+  creatorEmail: gAV.email,
   getVoicesCount,
 });
 

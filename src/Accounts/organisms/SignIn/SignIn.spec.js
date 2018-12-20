@@ -26,6 +26,9 @@ describe('SignIn Snapshot', () => {
       },
       loading: false,
     },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -58,6 +61,9 @@ describe('SignIn Snapshot with loginError true', () => {
         exist: false,
       },
       loading: false,
+    },
+    passwordChecker: {
+      tooShort: false,
     },
   };
   const mockStore = configureStore();
@@ -92,6 +98,9 @@ describe('SignIn (Shallow + passing the {store} directly)', () => {
       },
       loading: false,
     },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -121,6 +130,9 @@ describe('SignIn - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
         exist: false,
       },
       loading: false,
+    },
+    passwordChecker: {
+      tooShort: false,
     },
   };
   const middlewares = [reduxThunk];
@@ -166,6 +178,9 @@ describe('SignIn - REACT-REDUX (Mount + wrapping in <Provider>) - test Redirect'
         exist: false,
       },
       loading: false,
+    },
+    passwordChecker: {
+      tooShort: false,
     },
   };
   const middlewares = [reduxThunk];

@@ -32,15 +32,22 @@ class FormInputPassword extends Component {
       repeater,
       password,
       passwordRepeater,
+      tooShort,
     } = this.props;
-    let renderExist = '';
+    let isInvalid = '';
 
     if (
       password !== passwordRepeater
       && password !== ''
       && passwordRepeater !== ''
     ) {
-      renderExist = 'is-invalid';
+      isInvalid = 'is-invalid';
+    } else if (
+      tooShort
+      && password !== ''
+      && passwordRepeater !== ''
+    ) {
+      isInvalid = 'is-invalid';
     }
 
     return (
@@ -51,7 +58,7 @@ class FormInputPassword extends Component {
         value={!repeater ? password : passwordRepeater}
         onChange={e => this.onChangeValue(e.target.value)}
         required
-        className={`form-control ${renderExist}`}
+        className={`form-control ${isInvalid}`}
       />
     );
   }
@@ -61,13 +68,15 @@ FormInputPassword.propTypes = {
   repeater: PropTypes.bool,
   password: PropTypes.string.isRequired,
   passwordRepeater: PropTypes.string.isRequired,
+  tooShort: PropTypes.bool.isRequired,
   formInputPassword: PropTypes.func.isRequired,
   formInputPasswordRepeater: PropTypes.func.isRequired,
 };
 
-const mstp = ({ userData }) => ({
+const mstp = ({ userData, passwordChecker }) => ({
   password: userData.password,
   passwordRepeater: userData.passwordRepeater,
+  tooShort: passwordChecker.tooShort,
 });
 
 const mdtp = dispatch => bindActionCreators({

@@ -5,9 +5,11 @@ import PropTypes from 'prop-types';
 
 import { ValueChecker } from '../../../Core';
 
-const PasswordChecker = ({ password, passwordRepeater }) => {
+const PasswordChecker = ({ password, passwordRepeater, tooShort }) => {
   let rendering = '';
-  if (password === passwordRepeater) {
+  if (tooShort) {
+    rendering = <ValueChecker check={false} />;
+  } else if (password === passwordRepeater) {
     rendering = <ValueChecker check />;
   } else {
     rendering = <ValueChecker check={false} />;
@@ -22,11 +24,13 @@ const PasswordChecker = ({ password, passwordRepeater }) => {
 PasswordChecker.propTypes = {
   password: PropTypes.string.isRequired,
   passwordRepeater: PropTypes.string.isRequired,
+  tooShort: PropTypes.bool.isRequired,
 };
 
-const mstp = ({ userData }) => ({
+const mstp = ({ userData, passwordChecker }) => ({
   password: userData.password,
   passwordRepeater: userData.passwordRepeater,
+  tooShort: passwordChecker.tooShort,
 });
 
 export default connect(mstp)(PasswordChecker);

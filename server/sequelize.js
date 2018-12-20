@@ -39,6 +39,7 @@ export const User = UserModel(sequelize, Sequelize);
 // Relationship between tables
 Voice.belongsTo(Vote);
 Voice.belongsTo(Place);
+Vote.belongsTo(User);
 
 // M2M relationship between Vote and Place
 const VotePlace = sequelize.define('vote_place', {});

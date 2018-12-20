@@ -11,12 +11,20 @@ import { FormInputPassword, PasswordChecker } from '../..';
 const FormGroupPassword = ({
   password,
   passwordRepeater,
+  tooShort,
   text,
   forProp,
   repeater,
-  colorLabel
+  colorLabel,
 }) => {
   let rendering = '';
+  let formFeedbackText = '';
+
+  if (tooShort) {
+    formFeedbackText = 'Le mot de passe est trop court';
+  } else {
+    formFeedbackText = 'Les mots de passe sont différents';
+  }
 
   if (password !== '' && passwordRepeater !== '') {
     rendering = (
@@ -43,7 +51,7 @@ const FormGroupPassword = ({
         { forProp === 'passwordRepeater'
           ? (
             <FormFeedback
-              text="Les mots de passe sont différents"
+              text={formFeedbackText}
             />
           )
           : ''}
@@ -55,15 +63,17 @@ const FormGroupPassword = ({
 FormGroupPassword.propTypes = {
   password: PropTypes.string.isRequired,
   passwordRepeater: PropTypes.string.isRequired,
+  tooShort: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,
   forProp: PropTypes.string.isRequired,
   repeater: PropTypes.bool,
   colorLabel: PropTypes.string,
 };
 
-const mstp = ({ userData }) => ({
+const mstp = ({ userData, passwordChecker }) => ({
   password: userData.password,
   passwordRepeater: userData.passwordRepeater,
+  tooShort: passwordChecker.tooShort,
 });
 
 export default connect(mstp)(FormGroupPassword);

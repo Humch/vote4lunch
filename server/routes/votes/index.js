@@ -1,6 +1,9 @@
 import express from 'express';
+import Sequelize from 'sequelize';
 
-import { Place, Vote } from '../../sequelize';
+import { Place, Vote, User } from '../../sequelize';
+
+const { Op } = Sequelize;
 
 const router = express.Router();
 
@@ -18,16 +21,35 @@ const makeid = () => {
 
 // Create a vote and return vote data
 router.post('/add', (req, res) => {
-  if (req.body.date && req.body.end_date && req.body.pseudo && req.body.email) {
-    Vote
-      .create({
-        pseudo: req.body.pseudo,
-        email: req.body.email,
-        date: req.body.date,
-        end_date: req.body.end_date,
-        url: makeid()
-      })
-      .then(vote => res.json(vote));
+  if (
+    req.body.date
+    && req.body.end_date
+    && req.body.pseudo
+    && req.body.email
+    && req.body.title
+  ) {
+    User
+      .findOne({
+        where: {
+          pseudo: {
+            [Op.eq]: req.body.pseudo
+          },
+        },
+      }).then((result) => {
+        if (result) {
+          Vote
+            .create({
+              userId: result.id,
+              title: req.body.title,
+              date: req.body.date,
+              end_date: req.body.end_date,
+              url: makeid()
+            })
+            .then(vote => res.json(vote));
+        } else {
+          res.sendStatus(400);
+        }
+      });
   } else {
     res.sendStatus(400);
   }
@@ -51,7 +73,12 @@ router.get('/get', (req, res) => {
     .findOne({
       where: {
         url: req.query.vote_url
-      }
+      },
+      include: [{
+        model: User,
+        as: 'user',
+        attributes: ['pseudo', 'email'],
+      }],
     })
     .then((vote) => {
       res.json(vote);
@@ -60,17 +87,27 @@ router.get('/get', (req, res) => {
 
 // Get all votes from a user and return them
 router.get('/get/mine', (req, res) => {
-  Vote
-    .findAll({
-      order: [
-        ['date', 'ASC'],
-      ],
+  User
+    .findOne({
       where: {
-        pseudo: req.query.pseudo
-      }
+        pseudo: {
+          [Op.eq]: req.query.pseudo
+        },
+      },
     })
-    .then((votes) => {
-      res.json(votes);
+    .then((user) => {
+      Vote
+        .findAll({
+          order: [
+            ['date', 'ASC'],
+          ],
+          where: {
+            userId: user.id
+          }
+        })
+        .then((votes) => {
+          res.json(votes);
+        });
     });
 });
 

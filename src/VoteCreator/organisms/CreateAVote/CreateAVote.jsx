@@ -7,7 +7,13 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-import { Container, Row, Col, Button, Form } from 'reactstrap';
+import {
+  Container,
+  Row,
+  Col,
+  Button,
+  Form,
+} from 'reactstrap';
 
 import moment from 'moment';
 import 'moment/locale/fr';
@@ -15,11 +21,11 @@ import 'moment/locale/fr';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-import { FormInputPseudo, FormInputEmail } from '../../Accounts';
-import { FormInputDate, FormInputEndDate } from '../../Core';
+import { FormInputDate, FormInputEndDate } from '../../../Core';
+import { FormGroupVoteTitle } from '../..';
 
-import { onTopAlert, offTopAlert } from '../../Core/actions';
-import { createAVote, saveVoteData } from '../actions';
+import { onTopAlert, offTopAlert } from '../../../Core/actions';
+import { createAVote, saveVoteData } from '../../actions';
 
 moment.locale('fr');
 
@@ -35,24 +41,27 @@ class CreateAVote extends Component {
   componentDidUpdate(prevProps) {
     const {
       date,
+      time,
       endDate,
       endTime,
       onTopAlert: onTA,
       offTopAlert: offTA,
     } = this.props;
 
-    if (date !== '' && endDate !== '' && (date !== prevProps.date || endDate !== prevProps.endDate || endTime !== prevProps.endTime)) {
-      if (moment(date).isBefore(moment(endDate))) {
+    const { disabledButton } = this.state;
+
+    if (date !== '' && endDate !== '' && (date !== prevProps.date || time !== prevProps.time || endDate !== prevProps.endDate || endTime !== prevProps.endTime)) {
+      if (moment(`${date} ${time}`).isBefore(moment(`${endDate} ${endTime}`))) {
         this.toggleButton(true);
-        onTA('danger', 'La date de fin du vote ne peut pas être supérieure à la date du repas');
+        onTA('danger', 'La date de fin du vote ne peut pas être supérieure à la date de l\'événement');
         setTimeout(() => { offTA(); }, 5000);
       } else if (moment(date).isBefore(moment(), 'day')) {
-        onTA('warning', "Ca c'était avant, un peu tard pour programmer un déjeuner ;-) !");
+        onTA('warning', "Ca c'était avant, un peu tard pour programmer événement ;-) !");
         setTimeout(() => { offTA(); }, 5000);
       } else if (endDate !== '' && endTime !== '' && (moment(`${endDate} ${endTime}`).isBefore(moment()))) {
         onTA('warning', 'Ca va être compliqué de voter, la fin du vote est passée !');
         setTimeout(() => { offTA(); }, 5000);
-      } else if (this.state.disabledButton === true) {
+      } else if (disabledButton === true) {
         this.toggleButton(false);
       }
     }
@@ -65,14 +74,28 @@ class CreateAVote extends Component {
   }
 
   submitForm(e) {
-    const { pseudo, email, date, endDate, endTime } = this.props;
-    e.preventDefault();
-    this.props.createAVote(
+    const {
       pseudo,
       email,
+      title,
       date,
+      time,
       endDate,
-      endTime);
+      endTime,
+      createAVote: createAV
+    } = this.props;
+
+    e.preventDefault();
+
+    createAV(
+      pseudo,
+      email,
+      title,
+      date,
+      time,
+      endDate,
+      endTime
+    );
   }
 
   render() {
@@ -85,15 +108,15 @@ class CreateAVote extends Component {
       error,
       loading,
       onTopAlert: onTA,
-      offTopAlert: offTA
+      offTopAlert: offTA,
+      saveVoteData: saveVD,
     } = this.props;
 
     if (result !== '' && result.createdAt) {
-      this.props.saveVoteData(result.id, result.date, result.pseudo, result.email, result.url);
-      localStorage.setItem('pseudo', result.pseudo);
-      localStorage.setItem('email', result.email);
+      saveVD(result.id, result.date, result.pseudo, result.email, result.url);
       return <Redirect to="/add-place" />;
-    } else if (loading) {
+    }
+    if (loading) {
       rendering = <FontAwesomeIcon icon={faSpinner} spin />;
     } else if (error) {
       onTA('danger', "Oups, quelque chose s'est mal passé");
@@ -110,10 +133,9 @@ class CreateAVote extends Component {
             className="bg-blue p-5 rounded"
           >
             <Form onSubmit={e => this.submitForm(e)}>
+              <FormGroupVoteTitle />
               <FormInputDate />
               <FormInputEndDate />
-              <FormInputPseudo />
-              <FormInputEmail />
               <div className="text-center mt-5">
                 <Button disabled={disabledButton} color="success">{rendering}</Button>
               </div>
@@ -130,13 +152,15 @@ CreateAVote.propTypes = {
   createAVote: PropTypes.func.isRequired,
   onTopAlert: PropTypes.func.isRequired,
   offTopAlert: PropTypes.func.isRequired,
-  result: PropTypes.objectOf(PropTypes.object),
+  result: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   error: PropTypes.objectOf(PropTypes.object),
   loading: PropTypes.bool.isRequired,
   saveVoteData: PropTypes.func.isRequired,
   pseudo: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
   endDate: PropTypes.string.isRequired,
   endTime: PropTypes.string.isRequired,
 };
@@ -147,7 +171,9 @@ const mstp = ({ vote, voteDataForm }) => ({
   loading: vote.loading,
   pseudo: voteDataForm.pseudo,
   email: voteDataForm.email,
+  title: voteDataForm.title,
   date: voteDataForm.date,
+  time: voteDataForm.time,
   endDate: voteDataForm.endDate,
   endTime: voteDataForm.endTime,
 });

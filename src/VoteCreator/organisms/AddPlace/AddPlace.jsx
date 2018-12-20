@@ -9,7 +9,7 @@ import { Container, Row, Col } from 'reactstrap';
 import { PlaceMap } from '../../../Map';
 import { CreateAVotePlaces } from '..';
 
-const AddPlace = ({ voteDataId, userDataPseudo }) => {
+const AddPlace = ({ voteDataId, userDataPseudo, title }) => {
   if (voteDataId > 0) {
     return (
       <Container fluid className="AddPlace">
@@ -18,7 +18,8 @@ const AddPlace = ({ voteDataId, userDataPseudo }) => {
             <h5 className="text-white text-center my-3">
               {'Maintenant '}
               {userDataPseudo}
-              {', ajoute des restaurants'}
+              {', ajoute des restaurants pour l\'événement '}
+              {title}
             </h5>
           </Col>
         </Row>
@@ -46,11 +47,13 @@ const AddPlace = ({ voteDataId, userDataPseudo }) => {
 AddPlace.propTypes = {
   voteDataId: PropTypes.number.isRequired,
   userDataPseudo: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
-const mstp = ({ voteData, userData }) => ({
+const mstp = ({ voteData, userData, vote }) => ({
   voteDataId: voteData.id,
   userDataPseudo: userData.pseudo,
+  title: vote.result.title,
 });
 
 export default connect(mstp)(AddPlace);

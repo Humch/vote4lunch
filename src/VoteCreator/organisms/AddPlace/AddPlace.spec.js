@@ -18,6 +18,11 @@ describe('AddPlace (Shallow + passing the {store} directly)', () => {
     userData: {
       pseudo: 'bob',
     },
+    vote: {
+      result: {
+        title: 'Ceci est un titre',
+      },
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -46,6 +51,11 @@ describe('AddPlace - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
     },
     userData: {
       pseudo: 'bob',
+    },
+    vote: {
+      result: {
+        title: 'Ceci est un titre',
+      },
     },
     restaurants: {
       list: [],

@@ -307,6 +307,19 @@ exports[`SignUp Snapshot with user created capturing Snapshot of SignUp with use
         >
           Tu peux maintenant t'identifier.
         </p>
+        <p
+          className="text-center"
+        >
+          <a
+            aria-label={null}
+            className="mr-2 btn btn-success"
+            href="/signin"
+            id="loginButton"
+            onClick={[Function]}
+          >
+            S'identifier
+          </a>
+        </p>
       </div>
     </div>
   </div>

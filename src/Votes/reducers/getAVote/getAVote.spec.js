@@ -41,12 +41,14 @@ describe('Test getAVoteReducer', () => {
       type: 'GET_A_VOTE_SUCCESS',
       result: {
         id: 1,
-        pseudo: 'bob',
-        email: 'bob@bob.com',
         date: '31/12/2018',
         end_date: '31/12/2018',
         url: 'xY4Ht',
         active: true,
+        user: {
+          pseudo: 'bob',
+          email: 'bob@bob.com',
+        },
       },
     });
 

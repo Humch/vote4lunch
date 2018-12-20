@@ -13,7 +13,10 @@ describe('FormGoupPassword Snapshot', () => {
     userData: {
       password: '',
       passwordRepeater: '',
-    }
+    },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const text = 'le super label';
   const forProp = 'password';
@@ -42,7 +45,10 @@ describe('FormGoupPassword Snapshot', () => {
     userData: {
       password: 'f4k3password',
       passwordRepeater: 'f4k3password',
-    }
+    },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const text = 'le super label';
   const forProp = 'password';
@@ -71,7 +77,10 @@ describe('FormGoupPassword Snapshot', () => {
     userData: {
       password: 'f4k3password',
       passwordRepeater: 'f4k3',
-    }
+    },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const text = 'le super label';
   const forProp = 'password';

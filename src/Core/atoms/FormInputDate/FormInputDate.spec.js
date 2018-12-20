@@ -11,7 +11,12 @@ import { FormInputDate } from '../..';
 import { formInputDate } from '../../actions';
 
 describe('FormInputDate Snapshot', () => {
-  const initialState = { voteDataForm: { date: '2018-10-01' } };
+  const initialState = {
+    voteDataForm: {
+      date: '2018-10-01',
+      time: '',
+    }
+  };
   const mockStore = configureStore();
   let store;
 
@@ -26,7 +31,12 @@ describe('FormInputDate Snapshot', () => {
 });
 
 describe('FormInputDate (Shallow + passing the {store} directly)', () => {
-  const initialState = { voteDataForm: { date: '2018-10-01' } };
+  const initialState = {
+    voteDataForm: {
+      date: '2018-10-01',
+      time: '',
+    }
+  };
   const mockStore = configureStore();
   let store;
   let container;
@@ -42,11 +52,17 @@ describe('FormInputDate (Shallow + passing the {store} directly)', () => {
 
   it('check Prop matches with initialState', () => {
     expect(container.prop('date')).toEqual(initialState.voteDataForm.date);
+    expect(container.prop('time')).toEqual(initialState.voteDataForm.time);
   });
 });
 
 describe('FormInputDate - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
-  const initialState = { voteDataForm: { date: '2018-10-01' } };
+  const initialState = {
+    voteDataForm: {
+      date: '2018-10-01',
+      time: '12:00',
+    }
+  };
   const mockStore = configureStore();
   let store;
   let wrapper;
@@ -62,10 +78,11 @@ describe('FormInputDate - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
   });
 
   it('check action on dispatching', () => {
-    store.dispatch(formInputDate('2018-10-01'));
+    store.dispatch(formInputDate('2018-10-01', '12:00'));
     const action = store.getActions();
     expect(action[0].type).toBe('FORM_INPUT_DATE');
     expect(action[0].date).toBe(initialState.voteDataForm.date);
+    expect(action[0].time).toBe(initialState.voteDataForm.time);
   });
 
   it('check onChange in date input', () => {
@@ -77,5 +94,16 @@ describe('FormInputDate - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
     const action = store.getActions();
     expect(action[0].type).toBe('FORM_INPUT_DATE');
     expect(action[0].date).toBe('2018-01-05');
+  });
+
+  it('check onChange in time input', () => {
+    const input = wrapper.find('#time');
+    expect(input.props().value).toBe(initialState.voteDataForm.time);
+
+    const event = { target: { value: '15:00' } };
+    input.props().onChange(event);
+    const action = store.getActions();
+    expect(action[0].type).toBe('FORM_INPUT_DATE');
+    expect(action[0].time).toBe('15:00');
   });
 });

@@ -1,5 +1,6 @@
 import ButtonCollapser from './ButtonCollapser';
-import FormInputDate from './FormInputDate';
+import FormInput from './FormInput/FormInput';
+import FormInputDate from './FormInputDate/FormInputDate';
 import FormInputEndDate from './FormInputEndDate';
 import Label from './Label/Label';
 import TableBody from './TableBody';
@@ -10,6 +11,7 @@ import FormFeedback from './FormFeedback/FormFeedback';
 
 export {
   ButtonCollapser,
+  FormInput,
   FormInputDate,
   FormInputEndDate,
   Label,

@@ -6,14 +6,16 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 
 import { resetVoteData } from '../../../VoteCreator/actions';
+import { resetUserData } from '../../actions';
 
 class LogoutView extends Component {
   componentDidMount() {
-    const { resetVoteData: resetVD } = this.props;
+    const { resetVoteData: resetVD, resetUserData: resetUD } = this.props;
     localStorage.removeItem('pseudo');
     localStorage.removeItem('email');
     localStorage.removeItem('authenticated');
     resetVD();
+    resetUD();
   }
 
   render() {
@@ -23,8 +25,9 @@ class LogoutView extends Component {
 
 LogoutView.propTypes = {
   resetVoteData: PropTypes.func.isRequired,
+  resetUserData: PropTypes.func.isRequired,
 };
 
-const mdtp = dispatch => bindActionCreators({ resetVoteData }, dispatch);
+const mdtp = dispatch => bindActionCreators({ resetVoteData, resetUserData }, dispatch);
 
 export default connect(null, mdtp)(LogoutView);

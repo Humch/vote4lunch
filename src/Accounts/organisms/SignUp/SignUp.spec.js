@@ -7,6 +7,8 @@ import { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';
 
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import SignUp from './SignUp';
 
 describe('SignUp Snapshot', () => {
@@ -34,6 +36,9 @@ describe('SignUp Snapshot', () => {
         exist: false,
       },
       loading: false,
+    },
+    passwordChecker: {
+      tooShort: false,
     },
   };
   const mockStore = configureStore();
@@ -79,6 +84,9 @@ describe('SignUp Snapshot with loading', () => {
       },
       loading: false,
     },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -123,6 +131,9 @@ describe('SignUp Snapshot with user created', () => {
       },
       loading: false,
     },
+    passwordChecker: {
+      tooShort: false,
+    },
   };
   const mockStore = configureStore();
   let store;
@@ -133,9 +144,11 @@ describe('SignUp Snapshot with user created', () => {
 
   it('capturing Snapshot of SignUp with user created', () => {
     const renderedValue = renderer.create(
-      <Provider store={store}>
-        <SignUp />
-      </Provider>
+      <Router>
+        <Provider store={store}>
+          <SignUp />
+        </Provider>
+      </Router>
     ).toJSON();
     expect(renderedValue).toMatchSnapshot();
   });
@@ -166,6 +179,9 @@ describe('SignUp (Shallow + passing the {store} directly)', () => {
         exist: false,
       },
       loading: false,
+    },
+    passwordChecker: {
+      tooShort: false,
     },
   };
   const mockStore = configureStore();
@@ -216,6 +232,9 @@ describe('SignUp - REACT-REDUX (Mount + wrapping in <Provider>)', () => {
         exist: false,
       },
       loading: false,
+    },
+    passwordChecker: {
+      tooShort: false,
     },
   };
   const middlewares = [reduxThunk];

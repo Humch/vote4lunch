@@ -39,10 +39,14 @@ class Header extends Component {
   }
 
   componentDidMount() {
+    const { updateUserData: updateUD } = this.props;
+
     const getPseudo = localStorage.getItem('pseudo');
     const getEmail = localStorage.getItem('email');
-    if (getPseudo && getEmail) {
-      updateUserData(getPseudo, getEmail);
+    const getAuthenticated = localStorage.getItem('authenticated');
+    if (getPseudo && getEmail && getAuthenticated) {
+      const authenticated = JSON.parse(getAuthenticated);
+      updateUD(getPseudo, getEmail, authenticated);
     }
   }
 
@@ -205,9 +209,9 @@ class Header extends Component {
 }
 
 Header.propTypes = {
+  updateUserData: PropTypes.func.isRequired,
   pseudo: PropTypes.string.isRequired,
   authenticated: PropTypes.bool.isRequired,
-
 };
 
 const mstp = ({ userData }) => ({

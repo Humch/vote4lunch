@@ -191,6 +191,53 @@ describe('Test Accounts Reducers', () => {
       loginError: false,
     });
   });
+  it('RESET_PASSWORD_DATA case reducer for userData', () => {
+    state = userDataReducer(
+      {
+        ...state,
+        password: 'f4k3password',
+        passwordRepeater: 'f4k3password',
+      },
+      {
+        type: 'RESET_PASSWORD_DATA',
+      },
+    );
+
+    expect(state).toEqual({
+      pseudo: '',
+      email: '',
+      password: '',
+      passwordRepeater: '',
+      authenticated: false,
+      loading: false,
+      loginError: false,
+    });
+  });
+  it('RESET_USER_DATA case reducer for userData', () => {
+    state = userDataReducer(
+      {
+        ...state,
+        pseudo: 'bob',
+        email: 'bob@bob.com',
+        password: 'f4k3password',
+        passwordRepeater: 'f4k3password',
+        authenticated: true,
+      },
+      {
+        type: 'RESET_USER_DATA',
+      },
+    );
+
+    expect(state).toEqual({
+      pseudo: '',
+      email: '',
+      password: '',
+      passwordRepeater: '',
+      authenticated: false,
+      loading: false,
+      loginError: false,
+    });
+  });
 
   it('default case reducer for userData', () => {
     state = userDataReducer(undefined, { type: 'DUMMY_ACTION' });
