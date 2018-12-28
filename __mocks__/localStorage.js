@@ -9,7 +9,10 @@ const mock = (() => {
     },
     clear() {
       store = {};
-    }
+    },
+    removeItem(key) {
+      delete store[key];
+    },
   };
 })();
 

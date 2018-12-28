@@ -19,24 +19,18 @@ export function addVoice(voteUrl, placeId, pseudo, email) {
   return (dispatch) => {
     dispatch(addVoiceBegin());
     return (
-      axios
-        .get(`/api/vote/get?vote_url=${voteUrl}`)
-        .then(vote => axios({
-          url: '/api/voice/add',
-          method: 'post',
-          data: {
-            vote_id: vote.data.id,
-            place_id: placeId,
-            pseudo,
-            email,
-          }
-        })
-          .then(result => ({
-            result: result.data,
-            vote: vote.data,
-          })))
+      axios({
+        url: '/api/voice/add',
+        method: 'post',
+        data: {
+          vote_url: voteUrl,
+          place_id: placeId,
+          pseudo,
+          email,
+        }
+      })
         .then((result) => {
-          dispatch(addVoiceSuccess(result.result));
+          dispatch(addVoiceSuccess(result.data));
           dispatch(getVoiceCount(voteUrl, placeId));
           dispatch(getUserVoices(pseudo, email, [voteUrl]));
           dispatch(getAllVoicesForAVote(voteUrl));

@@ -6,12 +6,10 @@ import PropTypes from 'prop-types';
 
 import {
   InputGroup,
-  InputGroupAddon,
-  InputGroupText,
 } from 'reactstrap';
 
 import { Label, FormFeedback } from '../../../Core';
-import { FormInputEmail, EmailChecker } from '../..';
+import { FormInputEmail, EmailChecker, InputGroupAppend } from '../..';
 
 import { checkEmail } from '../../actions';
 
@@ -31,18 +29,6 @@ class FormGroupEmail extends Component {
       colorLabel
     } = this.props;
 
-    let rendering = '';
-
-    if (email !== '') {
-      rendering = (
-        <InputGroupAddon addonType="append">
-          <InputGroupText>
-            <EmailChecker />
-          </InputGroupText>
-        </InputGroupAddon>
-      );
-    }
-
     return (
       <div className="form-group">
         <Label
@@ -52,7 +38,13 @@ class FormGroupEmail extends Component {
         />
         <InputGroup>
           <FormInputEmail />
-          { rendering }
+          { email !== ''
+            ? (
+              <InputGroupAppend>
+                <EmailChecker />
+              </InputGroupAppend>
+            )
+            : '' }
           <FormFeedback
             text="Cet email est déjà utilisé"
           />

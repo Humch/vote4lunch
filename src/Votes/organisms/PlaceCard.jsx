@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSmileBeam } from '@fortawesome/free-regular-svg-icons';
 import MaterialIcon from 'material-icons-react';
 
 import React, { Component } from 'react';
@@ -10,11 +8,20 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'moment/locale/fr';
 
-import { Col, Card, CardBody, CardTitle, CardText, Button } from 'reactstrap';
+import {
+  Col,
+  Card,
+  CardBody,
+  CardTitle,
+  CardText,
+  Button,
+} from 'reactstrap';
 
 import axios from 'axios';
 
-import { addVoice, getVoiceCount } from '../actions';
+import { VoteIcon } from '..';
+
+import { getVoiceCount } from '../actions';
 import { updateMapCoordinates } from '../../Map/actions';
 
 moment.locale('fr');
@@ -26,23 +33,25 @@ class PlaceCard extends Component {
     this.getVoteId = this.getVoteId.bind(this);
 
     this.state = {
-      vote_id: '',
+      voteId: '',
     };
   }
 
   async componentDidMount() {
-    const { getVoiceCount: getVC } = this.props;
+    const { voteUrl, restaurant, getVoiceCount: getVC } = this.props;
 
-    await getVC(this.props.voteUrl, this.props.restaurant.id);
+    await getVC(voteUrl, restaurant.id);
     await this.getVoteId();
   }
 
   async getVoteId() {
+    const { voteUrl } = this.props;
+
     const voteId = await axios
-      .get(`/api/vote/get?vote_url=${this.props.voteUrl}`)
+      .get(`/api/vote/get?vote_url=${voteUrl}`)
       .then(result => result.data.id);
     await this.setState({
-      vote_id: voteId
+      voteId,
     });
   }
 
@@ -53,12 +62,12 @@ class PlaceCard extends Component {
       userData,
       userVoices,
       remainingTime,
-      voteUrl,
-      addVoice: addV,
       updateMapCoordinates: updateMC,
     } = this.props;
+    const { voteId } = this.state;
     // Control if the user has voted for the restaurant, if not, enable the button
     let disabledButton = false;
+    let voted = false;
 
     // disable button if vote end date is exceeded
     const tooLate = moment(remainingTime).isBefore();
@@ -69,13 +78,13 @@ class PlaceCard extends Component {
     if (userVoices.result.length > 0) {
       const filteredUserVoices = userVoices.result
         .filter(
-          element => parseInt(element.voteId, 10) === this.state.vote_id
+          element => parseInt(element.voteId, 10) === voteId
             && element.pseudo === userData.pseudo
             && element.email === userData.email
             && parseInt(element.placeId, 10) === restaurant.id
         );
       if (filteredUserVoices.length !== 0) {
-        disabledButton = true;
+        voted = true;
       }
     }
 
@@ -86,11 +95,11 @@ class PlaceCard extends Component {
       const filteredVoiceCount = voiceCount
         .filter(
           element => element.place === restaurant.id
-          && element.voteId === this.state.vote_id
+          && element.voteId === voteId
         );
 
       if (filteredVoiceCount.length !== 0) {
-        filteredVoiceCountValue = filteredVoiceCount[0];
+        [filteredVoiceCountValue] = filteredVoiceCount;
       }
     }
 
@@ -117,18 +126,15 @@ class PlaceCard extends Component {
             <CardTitle>
               {restaurant.name}
             </CardTitle>
-            <CardText>Votes : {filteredVoiceCountValue.count}</CardText>
-            <Button
-              onClick={
-                () => addV(
-                  voteUrl, restaurant.id, userData.pseudo, userData.email
-                )
-              }
-              size="sm"
-              color="success"
-              disabled={disabledButton}
-              className="mt-auto"
-            >Je vote pour ! <FontAwesomeIcon icon={faSmileBeam} /></Button>
+            <CardText>
+              {'Votes : '}
+              {filteredVoiceCountValue.count}
+            </CardText>
+            <VoteIcon
+              vote={voted}
+              disable={disabledButton}
+              placeId={restaurant.id}
+            />
           </CardBody>
         </Card>
       </Col>
@@ -146,17 +152,25 @@ PlaceCard.propTypes = {
   }).isRequired,
   voteUrl: PropTypes.string,
   voiceCount: PropTypes.arrayOf(PropTypes.object),
-  userData: PropTypes.objectOf(PropTypes.string).isRequired,
+  userData: PropTypes.shape({
+    pseudo: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    authenticated: PropTypes.bool,
+  }).isRequired,
   userVoices: PropTypes.shape({
     result: PropTypes.array.isRequired,
   }).isRequired,
   remainingTime: PropTypes.string.isRequired,
   updateMapCoordinates: PropTypes.func.isRequired,
-  addVoice: PropTypes.func.isRequired,
   getVoiceCount: PropTypes.func.isRequired,
 };
 
-const mstp = ({ getVoicesCount, userData, userVoices, getAVote }) => ({
+const mstp = ({
+  getVoicesCount,
+  userData,
+  userVoices,
+  getAVote,
+}) => ({
   voiceCount: getVoicesCount,
   userData,
   userVoices,
@@ -166,7 +180,6 @@ const mstp = ({ getVoicesCount, userData, userVoices, getAVote }) => ({
 const mdtp = dispatch => bindActionCreators({
   updateMapCoordinates,
   getVoiceCount,
-  addVoice,
 }, dispatch);
 
 export default connect(mstp, mdtp)(PlaceCard);

@@ -14,17 +14,11 @@ const userVoices = (state = initialState, action) => {
       };
     case 'GET_USER_VOICES_SUCCESS':
     {
-      const newState = action.result.filter((e) => {
-        if (state.result.indexOf(e) !== -1) {
-          return false;
-        }
-        return true;
-      });
       return {
         ...state,
         loading: false,
         error: null,
-        result: [...state.result, ...newState],
+        result: [...action.result],
       };
     }
     case 'GET_USER_VOICES_FAILURE':

@@ -37,20 +37,6 @@ describe('Test getUserVoicesReducer', () => {
     });
   });
 
-  it('GET_USER_VOICES_SUCCESS case reducer for getUserVoices with element of state already exist', () => {
-    state.result = ['Youpi !', 'Pop !'];
-    state = getUserVoicesReducer(state, {
-      type: 'GET_USER_VOICES_SUCCESS',
-      result: ['Youpi !'],
-    });
-
-    expect(state).toEqual({
-      result: ['Youpi !', 'Pop !'],
-      loading: false,
-      error: null,
-    });
-  });
-
   it('GET_USER_VOICES_FAILURE case reducer for getUserVoices', () => {
     state = getUserVoicesReducer(state, {
       type: 'GET_USER_VOICES_FAILURE',

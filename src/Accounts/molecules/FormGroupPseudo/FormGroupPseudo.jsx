@@ -6,19 +6,17 @@ import PropTypes from 'prop-types';
 
 import {
   InputGroup,
-  InputGroupAddon,
-  InputGroupText,
 } from 'reactstrap';
 
 import { Label, FormFeedback } from '../../../Core';
-import { FormInputPseudo, PseudoChecker } from '../..';
+import { FormInputPseudo, PseudoChecker, InputGroupAppend } from '../..';
 
 import { checkPseudo } from '../../actions';
 
 class FormGroupPseudo extends Component {
   componentDidUpdate(prevProps) {
     const { pseudo, checkPseudo: checkP, noCheck } = this.props;
-    if (prevProps.pseudo !== pseudo && !noCheck) {
+    if (prevProps.pseudo !== pseudo && !noCheck && pseudo !== '') {
       checkP(pseudo);
     }
   }
@@ -32,18 +30,6 @@ class FormGroupPseudo extends Component {
       noCheck,
     } = this.props;
 
-    let rendering = '';
-
-    if (pseudo !== '' && !noCheck) {
-      rendering = (
-        <InputGroupAddon addonType="append">
-          <InputGroupText>
-            <PseudoChecker />
-          </InputGroupText>
-        </InputGroupAddon>
-      );
-    }
-
     return (
       <div className="form-group">
         <Label
@@ -53,7 +39,13 @@ class FormGroupPseudo extends Component {
         />
         <InputGroup>
           <FormInputPseudo />
-          { rendering }
+          { pseudo !== '' && !noCheck
+            ? (
+              <InputGroupAppend>
+                <PseudoChecker />
+              </InputGroupAppend>
+            )
+            : '' }
           <FormFeedback
             text="Ce pseudo existe déjà"
           />

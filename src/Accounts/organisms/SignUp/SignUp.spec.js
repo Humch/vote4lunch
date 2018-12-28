@@ -198,12 +198,7 @@ describe('SignUp (Shallow + passing the {store} directly)', () => {
   });
 
   it('check Prop matches with initialState', () => {
-    expect(container.prop('pseudo')).toEqual(initialState.userData.pseudo);
-    expect(container.prop('email')).toEqual(initialState.userData.email);
-    expect(container.prop('password')).toEqual(initialState.userData.password);
-    expect(container.prop('passwordRepeater')).toEqual(initialState.userData.passwordRepeater);
     expect(container.prop('payload')).toEqual(initialState.addUser.payload);
-    expect(container.prop('loading')).toEqual(initialState.addUser.loading);
   });
 });
 

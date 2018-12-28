@@ -214,6 +214,9 @@ describe('Test Accounts Reducers', () => {
     });
   });
   it('RESET_USER_DATA case reducer for userData', () => {
+    LS.window.localStorage.setItem('pseudo', 'bob');
+    LS.window.localStorage.setItem('email', 'bob@bob.com');
+    LS.window.localStorage.setItem('authenticated', 'true');
     state = userDataReducer(
       {
         ...state,

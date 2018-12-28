@@ -68,7 +68,7 @@ class LoginModal extends Component {
     this.setState({
       modal: false,
     });
-    updateUD(pseudo, email);
+    updateUD(pseudo, email, false);
   }
 
   render() {

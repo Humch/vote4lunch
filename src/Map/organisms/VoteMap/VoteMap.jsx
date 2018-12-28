@@ -3,13 +3,22 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import {
+  Map,
+  TileLayer,
+  Marker,
+  Popup,
+} from 'react-leaflet';
 
 import MaterialIcon from 'material-icons-react';
 
 import 'leaflet/dist/leaflet.css';
 
-import { updateMapCoordinates } from '../actions';
+import './VoteMap.scss';
+
+import { VoteContent } from '../../../Votes';
+
+import { updateMapCoordinates } from '../../actions';
 
 class VoteMap extends Component {
   constructor() {
@@ -36,22 +45,29 @@ class VoteMap extends Component {
   }
 
   render() {
-    const { restaurants, positionLatitude, positionLongitude, zoomLevel } = this.props;
+    const {
+      restaurants,
+      positionLatitude,
+      positionLongitude,
+      zoomLevel,
+    } = this.props;
     const mapCenter = [positionLatitude, positionLongitude];
     const mapTiles = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
     return (
-      <div className="mt-3">
-        <Map
-          center={mapCenter}
-          zoom={zoomLevel}
-          ref={this.leafletMap}
-          className="VoteMap"
-        >
-          <TileLayer
-            url={mapTiles}
-          />
-          {
+      <Map
+        center={mapCenter}
+        zoom={zoomLevel}
+        ref={this.leafletMap}
+        className="VoteMap"
+        zoomControl={false}
+      >
+        
+        <TileLayer
+          url={mapTiles}
+        />
+        <VoteContent />
+        {
             restaurants.map(restaurant => (
               <Marker
                 key={restaurant.id}
@@ -68,8 +84,7 @@ class VoteMap extends Component {
               </Marker>
             ))
           }
-        </Map>
-      </div>
+      </Map>
     );
   }
 }

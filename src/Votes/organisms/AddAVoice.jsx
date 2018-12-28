@@ -177,7 +177,7 @@ class AddAVoice extends Component {
         </Row>
         {displayTrophy}
         <Row className="justify-content-center pt-3">
-          {listOfRestaurants.map(restaurant => (
+          {listOfRestaurants.sort((a, b) => a.id - b.id).map(restaurant => (
             <PlaceCard
               key={restaurant.id}
               restaurant={restaurant}

@@ -1,12 +1,13 @@
 const getPseudo = localStorage.getItem('pseudo');
 const getEmail = localStorage.getItem('email');
+const getAuthenticated = localStorage.getItem('authenticated');
 
 const initialState = {
   pseudo: getPseudo || '',
   email: getEmail || '',
   password: '',
   passwordRepeater: '',
-  authenticated: false,
+  authenticated: JSON.parse(getAuthenticated) || false,
   loading: false,
   loginError: false,
 };
@@ -84,8 +85,16 @@ export default (state = initialState, action) => {
         passwordRepeater: '',
       };
     case 'RESET_USER_DATA':
+      localStorage.removeItem('pseudo');
+      localStorage.removeItem('email');
+      localStorage.removeItem('authenticated');
       return {
-        ...initialState,
+        ...state,
+        pseudo: '',
+        email: '',
+        authenticated: false,
+        password: '',
+        passwordRepeater: '',
       };
     default:
       return state;

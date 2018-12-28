@@ -1,5 +1,5 @@
 import About from './About';
-import App from './App';
+import App from './App/App';
 import Footer from './Footer';
 import Header from './Header/Header';
 import NotFound from './NotFound';

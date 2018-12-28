@@ -1,22 +1,55 @@
-import { ButtonEndDate, DisplayWinnerTrophy, MailToButton } from './atoms';
-import { DisplayWinner, UsersVoicesTable } from './molecules';
+import {
+  ButtonEndDate,
+  DisplayWinnerTrophy,
+  MailToButton,
+  VoteIcon,
+  VoteTitle,
+  CloseIcon,
+  HomeButton,
+  HamburgerIcon,
+  VoteCardTextVoiceCounter,
+} from './atoms';
+import {
+  DisplayWinner,
+  UsersVoicesTable,
+  VoteHeader,
+  VoteSidebar,
+  VoteHeaderButtonBar,
+  VoteSidebarContent,
+  VoteCard,
+} from './molecules';
 import {
   AddAVoice,
   GetUsersVotes,
   PlaceCard,
   UsersVoices,
-  VoteCollapser
+  VoteCollapser,
+  VoteView,
+  VoteContent,
 } from './organisms';
 
 export {
   ButtonEndDate,
   DisplayWinnerTrophy,
   MailToButton,
+  VoteIcon,
+  VoteTitle,
+  CloseIcon,
+  HamburgerIcon,
   DisplayWinner,
   UsersVoicesTable,
+  VoteHeader,
+  VoteSidebar,
+  VoteHeaderButtonBar,
+  VoteSidebarContent,
+  VoteCard,
+  VoteCardTextVoiceCounter,
   AddAVoice,
   GetUsersVotes,
   PlaceCard,
   UsersVoices,
-  VoteCollapser
+  VoteCollapser,
+  VoteView,
+  VoteContent,
+  HomeButton,
 };

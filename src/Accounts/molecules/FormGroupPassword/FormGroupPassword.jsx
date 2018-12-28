@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
-import { InputGroup, InputGroupAddon, InputGroupText } from 'reactstrap';
+import { InputGroup } from 'reactstrap';
 
 import { Label, FormFeedback } from '../../../Core';
-import { FormInputPassword, PasswordChecker } from '../..';
+import { FormInputPassword, PasswordChecker, InputGroupAppend } from '../..';
 
 const FormGroupPassword = ({
   password,
@@ -16,49 +16,34 @@ const FormGroupPassword = ({
   forProp,
   repeater,
   colorLabel,
-}) => {
-  let rendering = '';
-  let formFeedbackText = '';
-
-  if (tooShort) {
-    formFeedbackText = 'Le mot de passe est trop court';
-  } else {
-    formFeedbackText = 'Les mots de passe sont différents';
-  }
-
-  if (password !== '' && passwordRepeater !== '') {
-    rendering = (
-      <InputGroupAddon addonType="append">
-        <InputGroupText>
-          <PasswordChecker />
-        </InputGroupText>
-      </InputGroupAddon>
-    );
-  }
-
-  return (
-    <div className="form-group">
-      <Label
-        text={text}
-        forProp={forProp}
-        color={colorLabel}
+}) => (
+  <div className="form-group">
+    <Label
+      text={text}
+      forProp={forProp}
+      color={colorLabel}
+    />
+    <InputGroup>
+      <FormInputPassword
+        repeater={repeater}
       />
-      <InputGroup>
-        <FormInputPassword
-          repeater={repeater}
-        />
-        { rendering }
-        { forProp === 'passwordRepeater'
-          ? (
-            <FormFeedback
-              text={formFeedbackText}
-            />
-          )
-          : ''}
-      </InputGroup>
-    </div>
-  );
-};
+      { password !== '' && passwordRepeater !== ''
+        ? (
+          <InputGroupAppend>
+            <PasswordChecker />
+          </InputGroupAppend>
+        )
+        : '' }
+      { forProp === 'passwordRepeater'
+        ? (
+          <FormFeedback
+            text={tooShort ? 'Le mot de passe est trop court' : 'Les mots de passe sont différents'}
+          />
+        )
+        : ''}
+    </InputGroup>
+  </div>
+);
 
 FormGroupPassword.propTypes = {
   password: PropTypes.string.isRequired,

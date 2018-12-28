@@ -1,20 +1,71 @@
 import express from 'express';
+import Sequelize from 'sequelize';
 
 import { Vote, Voice } from '../../sequelize';
+
+const { Op } = Sequelize;
 
 const router = express.Router();
 
 // Add a Voice
 router.post('/add', (req, res) => {
-  if (req.body.vote_id && req.body.place_id && req.body.pseudo && req.body.email) {
-    Voice.create({
-      voteId: req.body.vote_id,
-      placeId: req.body.place_id,
-      pseudo: req.body.pseudo,
-      email: req.body.email,
-    }).then(() => {
-      res.json({ vote: true });
-    });
+  if (req.body.vote_url && req.body.place_id && req.body.pseudo && req.body.email) {
+    Vote
+      .findOne({
+        where: {
+          url: {
+            [Op.eq]: req.body.vote_url,
+          },
+        }
+      })
+      .then((vote) => {
+        Voice.create({
+          voteId: vote.id,
+          placeId: req.body.place_id,
+          pseudo: req.body.pseudo,
+          email: req.body.email,
+        }).then(() => {
+          res.json({ vote: true });
+        });
+      });
+  } else {
+    res.sendStatus(400);
+  }
+});
+
+// Delete a Voice
+router.post('/delete', (req, res) => {
+  if (req.body.vote_url && req.body.place_id && req.body.pseudo && req.body.email) {
+    Vote
+      .findOne({
+        where: {
+          url: {
+            [Op.eq]: req.body.vote_url,
+          },
+        }
+      })
+      .then((vote) => {
+        Voice
+          .findOne({
+            where: {
+              voteId: {
+                [Op.eq]: vote.id,
+              },
+              placeId: {
+                [Op.eq]: req.body.place_id,
+              },
+              pseudo: {
+                [Op.eq]: req.body.pseudo,
+              },
+              email: {
+                [Op.eq]: req.body.email,
+              },
+            },
+          }).then((voice) => {
+            voice.destroy();
+            res.json({ deleted: true });
+          });
+      });
   } else {
     res.sendStatus(400);
   }

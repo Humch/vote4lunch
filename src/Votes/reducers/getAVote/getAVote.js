@@ -2,6 +2,7 @@ const initialState = {
   id: 0,
   pseudo: '',
   email: '',
+  title: '',
   date: '',
   end_date: '',
   url: '',

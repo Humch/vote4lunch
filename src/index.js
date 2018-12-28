@@ -9,7 +9,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from 'react-redux';
 import allReducers from './reducers';
 
-import App from './Core/organisms/App';
+import { App } from './Core';
 
 import './Core/css/index.scss';
 
